@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior:smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gym Team | Personal Training – Kriva Palanka</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            orange: {
+              500: '#FF6B00',
+              600: '#E55A00',
+              400: '#FF8C33',
+            }
+          },
+          fontFamily: {
+            black: ['Arial Black', 'Impact', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@400;500;600&display=swap');
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background-color: #0a0a0a;
+      color: #ffffff;
+    }
+
+    h1, h2, h3, h4, .heading {
+      font-family: 'Barlow Condensed', sans-serif;
+    }
+
+    .orange-text { color: #FF6B00; }
+    .orange-bg { background-color: #FF6B00; }
+    .orange-border { border-color: #FF6B00; }
+
+    .hero-bg {
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 60%;
+      height: 200%;
+      background: linear-gradient(135deg, transparent 0%, rgba(255,107,0,0.08) 50%, transparent 100%);
+      transform: skewX(-15deg);
+      pointer-events: none;
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, #FF6B00, transparent);
+    }
+
+    .nav-link {
+      position: relative;
+      transition: color 0.3s;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: #FF6B00;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after { width: 100%; }
+    .nav-link:hover { color: #FF6B00; }
+
+    .btn-primary {
+      background-color: #FF6B00;
+      color: #000;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 1rem 2.5rem;
+      display: inline-block;
+      transition: all 0.3s ease;
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    }
+
+    .btn-primary:hover {
+      background-color: #E55A00;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255,107,0,0.4);
+    }
+
+    .btn-outline {
+      border: 2px solid #FF6B00;
+      color: #FF6B00;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 1rem 2.5rem;
+      display: inline-block;
+      transition: all 0.3s ease;
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    }
+
+    .btn-outline:hover {
+      background-color: #FF6B00;
+      color: #000;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255,107,0,0.4);
+    }
+
+    .service-card {
+      background: #111111;
+      border: 1px solid #222;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: #FF6B00;
+      transition: width 0.4s ease;
+    }
+
+    .service-card:hover::before { width: 100%; }
+
+    .service-card:hover {
+      border-color: #FF6B00;
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(255,107,0,0.15);
+    }
+
+    .testimonial-card {
+      background: #111111;
+      border: 1px solid #222;
+      position: relative;
+    }
+
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: -20px;
+      left: 20px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 8rem;
+      color: #FF6B00;
+      opacity: 0.2;
+      line-height: 1;
+    }
+
+    .stat-number {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 4rem;
+      color: #FF6B00;
+      line-height: 1;
+    }
+
+    .section-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #FF6B00;
+    }
+
+    .angle-divider {
+      width: 100%;
+      height: 60px;
+      background: #0a0a0a;
+      clip-path: polygon(0 0, 100% 100%, 100% 100%, 0 100%);
+    }
+
+    .orange-gradient-text {
+      background: linear-gradient(135deg, #FF6B00, #FF8C33);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .grid-bg {
+      background-image: 
+        linear-gradient(rgba(255,107,0,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,107,0,0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+    }
+
+    .photo-placeholder {
+      background: linear-gradient(135deg, #1a1a1a, #222);
+      border: 2px dashed #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      color: #555;
+      font-family: 'Barlow Condensed', sans-serif;
+    }
+
+    .transformation-card {
+      background: #111;
+      border: 1px solid #222;
+      overflow: hidden;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .transformation-card:hover {
+      transform: scale(1.02);
+      border-color: #FF6B00;
+    }
+
+    .mobile-menu {
+      display: none;
+    }
+
+    .mobile-menu.open {
+      display: flex;
+    }
+
+    input, textarea, select {
+      background-color: #111 !important;
+      border: 1px solid #333 !important;
+      color: #fff !important;
+      transition: border-color 0.3s ease;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      outline: none !important;
+      border-color: #FF6B00 !important;
+      box-shadow: 0 0 0 2px rgba(255,107,0,0.1) !important;
+    }
+
+    input::placeholder, textarea::placeholder {
+      color: #555 !important;
+    }
+
+    .badge {
+      background: rgba(255,107,0,0.15);
+      border: 1px solid rgba(255,107,0,0.3);
+      color: #FF6B00;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.75rem;
+    }
+
+    .noise-overlay {
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0a0a0a; }
+    ::-webkit-scrollbar-thumb { background: #FF6B00; border-radius: 3px; }
+
+    .icon-box {
+      width: 56px;
+      height: 56px;
+      background: rgba(255,107,0,0.1);
+      border: 1px solid rgba(255,107,0,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+    }
+
+    .progress-bar {
+      height: 4px;
+      background: #222;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #FF6B00, #FF8C33);
+      transition: width 1.5s ease;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(255,107,0,0.3); }
+      50% { box-shadow: 0 0 40px rgba(255,107,0,0.6); }
+    }
+
+    .glow-pulse {
+      animation: pulse-glow 2s infinite;
+    }
+
+    .skew-left {
+      transform: skewX(-3deg);
+    }
+
+    .skew-left > * {
+      transform: skewX(3deg);
+    }
+  </style>
+</head>
+<body class="bg-black text-white">
+
+  <!-- ======================== NAVIGATION ======================== -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" style="background: rgba(10,10,10,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1a1a1a;">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-18 py-4">
+        <!-- Logo -->
+        <a href="#home" class="flex items-center gap-3">
+          <div class="w-10 h-10 orange-bg flex items-center justify-center" style="clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M6.5 6.5h-2a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h2v3l3-3h6l3 3v-3h2a1 1 0 0 0 1-1v-9a1 1 0 0 0-1-1h-2" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+              <path d="M2 9h3M19 9h3M2 15h3M19 15h3M8.5 6.5v11M15.5 6.5v11" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div>
+            <span class="heading font-black text-2xl tracking-wider text-white" style="font-family:'Barlow Condensed',sans-serif; font-weight:900; letter-spacing:0.05em;">GYM <span class="orange-text">TEAM</span></span>
+          </div>
+        </a>
+
+        <!-- Desktop Nav -->
+        <div class="hidden md:flex items-center gap-8">
+          <a href="#programs" class="nav-link text-gray-300 font-semibold text-sm uppercase tracking-widest">Programs</a>
+          <a href="#about" class="nav-link text-gray-300 font-semibold text-sm uppercase tracking-widest">About</a>
+          <a href="#results" class="nav-link text-gray-300 font-semibold text-sm uppercase tracking-widest">Results</a>
+          <a href="#testimonials" class="nav-link text-gray-300 font-semibold text-sm uppercase tracking-widest">Reviews</a>
+          <a href="#contact" class="nav-link text-gray-300 font-semibold text-sm uppercase tracking-widest">Contact</a>
+          <a href="#contact" class="btn-primary text-sm">Book Free Session</a>
+        </div>
+
+        <!-- Mobile Hamburger -->
+        <button id="menuBtn" class="md:hidden flex flex-col gap-1.5 p-2" onclick="toggleMenu()">
+          <span class="w-6 h-0.5 bg-white transition-all duration-300" id="bar1"></span>
+          <span class="w-6 h-0.5 bg-orange-500 transition-all duration-300" id="bar2"></span>
+          <span class="w-6 h-0.5 bg-white transition-all duration-300" id="bar3"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu md:hidden flex-col bg-black border-t border-gray-900 px-6 py-6 gap-4">
+      <a href="#programs" onclick="closeMenu()" class="text-gray-300 font-semibold text-lg uppercase tracking-widest py-2 border-b border-gray-900">Programs</a>
+      <a href="#about" onclick="closeMenu()" class="text-gray-300 font-semibold text-lg uppercase tracking-widest py-2 border-b border-gray-900">About</a>
+      <a href="#results" onclick="closeMenu()" class="text-gray-300 font-semibold text-lg uppercase tracking-widest py-2 border-b border-gray-900">Results</a>
+      <a href="#testimonials" onclick="closeMenu()" class="text-gray-300 font-semibold text-lg uppercase tracking-widest py-2 border-b border-gray-900">Reviews</a>
+      <a href="#contact" onclick="closeMenu()" class="text-gray-300 font-semibold text-lg uppercase tracking-widest py-2 border-b border-gray-900">Contact</a>
+      <a href="#contact" onclick="closeMenu()" class="btn-primary text-center mt-4">Book Free Session</a>
+    </div>
+  </nav>
+
+  <!-- ======================== HERO ======================== -->
+  <section id="home" class="hero-bg grid-bg min-h-screen flex items-center pt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <!-- Left Content -->
+        <div>
+          <div class="badge inline-block mb-6">
+            ⚡ Certified Personal Trainer — Kriva Palanka
+          </div>
+
+          <h1 class="heading font-black text-6xl sm:text-7xl lg:text-8xl leading-none tracking-tight mb-6 uppercase" style="font-weight:900;">
+            FORGE YOUR<br />
+            <span class="orange-gradient-text">BEST BODY</span><br />
+            EVER.
+          </h1>
+
+          <p class="text-gray-400 text-xl leading-relaxed mb-8 max-w-lg" style="font-family:'Barlow',sans-serif;">
+            No shortcuts. No excuses. Just science-backed personal training programs designed to transform your physique, strength, and mindset — guaranteed results or we keep working.
+          </p>
+
+          <div class="flex flex-wrap gap-4 mb-12">
+            <a href="#contact" class="btn-primary glow-pulse">Book Free Consultation</a>
+            <a href="#programs" class="btn-outline">View Programs</a>
+          </div>
+
+          <!-- Stats Row -->
+          <div class="flex gap-8 pt-8 border-t border-gray-800">
+            <div>
+              <div class="stat-number">150+</div>
+              <div class="text-gray-500 text-sm uppercase tracking-wider mt-1">Clients Transformed</div>
+            </div>
+            <div class="w-px bg-gray-800"></div>
+            <div>
+              <div class="stat-number">8+</div>
+              <div class="text-gray-500 text-sm uppercase tracking-wider mt-1">Years Experience</div>
+            </div>
+            <div class="w-px bg-gray-800"></div>
+            <div>
+              <div class="stat-number">98%</div>
+              <div class="text-gray-500 text-sm uppercase tracking-wider mt-1">Client Retention</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Visual -->
+        <div class="relative">
+          <div class="relative z-10">
+            <!-- Main photo placeholder -->
+            <div class="photo-placeholder rounded-none w-full h-96 lg:h-[520px]" style="border: 2px solid #333; background: linear-gradient(135deg, #111 0%, #1a1a1a 100%);">
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" class="mb-4" style="opacity:0.3;">
+                <circle cx="12" cy="7" r="4" stroke="#FF6B00" stroke-width="1.5"/>
+                <path d="M2 21v-1a7 7 0 0 1 7-7h6a7 7 0 0 1 7 7v1" stroke="#FF6B00" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              <span class="text-lg font-bold tracking-widest uppercase" style="color:#333; font-family:'Barlow Condensed',sans-serif;">Trainer Photo</span>
+              <span class="text-sm mt-2" style="color:#2a2a2a;">Add your professional photo here</span>
+            </div>
+
+            <!-- Floating badge top-left -->
+            <div class="absolute -top-5 -left-5 bg-black border border-orange-500 p-4 z-20">
+              <div class="text-orange-500 font-black text-2xl heading" style="font-family:'Barlow Condensed',sans-serif; font-weight:900;">FREE</div>
+              <div class="text-white text-xs uppercase tracking-widest">Intro Session</div>
+            </div>
+
+            <!-- Floating card bottom-right -->
+            <div class="absolute -bottom-6 -right-6 bg-orange-500 p-5 z-20 max-w-xs">
+              <div class="text-black font-black text-lg heading uppercase" style="font-family:'Barlow Condensed',sans-serif; font-weight:900;">Mon–Fri 7:00–19:00</div>
+              <div class="text-black text-sm font-semibold mt-1">Makedonska 115, Kriva Palanka</div>
+            </div>
+          </div>
+
+          <!-- Decorative elements -->
+          <div class="absolute top-8 right-8 w-32 h-32 border border-orange-500 opacity-10" style="transform: rotate(15deg);"></div>
+          <div class="absolute bottom-16 left-8 w-16 h-16 border border-orange-500 opacity-20"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== PROGRAMS / SERVICES ======================== -->
+  <section id="programs" class="py-24 bg-black">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Section Header -->
+      <div class="text-center mb-16">
+        <div class="section-label mb-4">Training Programs</div>
+        <h2 class="heading font-black text-5xl sm:text-6xl uppercase tracking-tight" style="font-weight:900;">
+          PICK YOUR <span class="orange-gradient-text">PROGRAM</span>
+        </h2>
+        <p class="text-gray-400 mt-4 text-lg max-w-2xl mx-auto">Every program is built around your unique goals, schedule, and fitness level. No cookie-cutter plans — just results-driven training that works.</p>
+      </div>
+
+      <!-- Programs Grid -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Card 1 -->
+        <div class="service-card p-8 cursor-pointer">
+          <div class="icon-box mb-6">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+              <path d="M6 4v16M18 4v16M3 8h4M17 8h4M3 16h4M17 16h4M10 12h4" stroke="#FF6B00" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="badge mb-4">Most Popular</div>
+          <h3 class="heading font-black text-3xl uppercase mb-3" style="font-weight:800;">1-on-1 Personal Training</h3>
+          <p class="text-gray-400 mb-6 leading-relaxed">Fully personalized sessions with direct coaching, form correction, and weekly plan adjustments. The fastest path to your goals.</p>
+          <div class="space-y-2 mb-6">
+            <div class="flex items-center gap-2 text-sm text-gray-300"><span class="orange-text font-bold">✓</span> Custom workout programming</div>
+            <div class="flex items-center gap-2 text-sm text-gray-300"><span class="orange-text font-bold">✓</span> Nutrition guidance included</div>
+            <div class="flex items-center gap-2 text-sm text-gray-300"><span class="orange-text font-bold">✓</span> Progress tracking & adjustments</div>
+            <div class="flex items-center gap-2 text-sm text-gray-300"><span class="orange-text font-bold">✓</span> WhatsApp support between sessions</div>
+          </div>
+          <div class="progress-bar mb-2"><div class="progress-bar-fill" style="width:95%"></div></div>
+          <div class="text-xs text-gray-500 uppercase tracking-wider">Effectiveness: 95%</div>
+          <a href="#contact" class="btn-primary w-full text-center mt-6 block">Start Now</a>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="service-card p-8 cursor-pointer" style="border-color: #FF6B00; background: linear-gradient(135deg, #111 0%, #1a0e00 100%);">
+          <div class="absolute top-0 right-0 bg-orange-500 px-4 py-2">
+            <span class="text-black font-black text-xs uppercase tracking-wider heading" style="font-family:'Barlow Condensed',sans-serif;">Best Value</span>
+          </div>
+          <div class="icon-box mb-6" style="background: rgba(255,107,0,0.2);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="#FF6B00" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="9" cy="7" r="4" stroke="#FF6B00" stroke-width="2"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="#FF6B00" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="heading font-black text-3xl uppercase mb-3" style="font-weight:800;">Monthly Transformation Pack</h3>
+          <p class="text-gray-400 mb-6 leading-relaxed">12 sessions per month with full nutrition planning, body composition tracking, and bi-weekly check-ins. Serious results for serious people.</p>
+          <div class="space-y-2 mb-6">
+            <div class="flex items-center gap-2 text-sm text-gray-300"><span class="orange-text font-bold">✓</span> 12 coached sessions / month</div>
+            <div class="flex items-center gap-2 text-sm text-gray-300"><span class="orange-text font-bold">✓</span> Full meal plan & macros</div>
+            <div class="flex items-center gap-2 text-sm text-gray-300"><span class="orange-text font-bold">✓</span> Body composition scans</div>
+            <div class="flex items-center gap-2 text-sm text-gray-300"><span class="orange-text font-bold">✓</span> Supplement recommendations</div>
+          </div>
+          <div class="progress-bar mb-2"><div class="progress-bar-fill" style="width:100%"></div></div>
+          <div class="text-xs text-gray-500 uppercase tracking-wider">Effectiveness: 100%</div>
+          <a href="#contact" class="btn-primary w-full text-center mt-6 block">Get Started</a>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="service-card p-8 cursor-pointer">
+          <div class="icon-box mb-6">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#FF6B00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="heading font-black text-3xl uppercase mb-3" style="font-weight:800;">Online Coaching Program</h3>
+          <p class="text-gray-400 mb-6 leading-relaxed">Can't make it in person? Get a custom program delivered online with video reviews, weekly check-ins, and real accountability.</p>
+          <div class="space-y-2 mb-6">
+            <div class="flex items-center gap-2 text-sm text-gray-300"><span class="orange-text font-bold">✓</span> Custom weekly programs</div>
+            <div class="flex items-center gap-2 text-sm text-gray-300"><span class="orange-text font-bold">✓</span> Video form analysis</div>
+            <div class="flex items-center gap-2 text-sm text-gray-300"><span class="orange-text font-bold">✓</span> Weekly check-in calls</div>
+            <div class="flex items-center gap-2 text-sm text-gray-300"><span class="orange-text font-bold">✓</span> 24/7 messaging support</div>
+          </div>
+          <div class="progress-bar mb-2"><div class="progress-bar-fill" style="width:85%"></div></div>
+          <div class="text-xs text-gray-500 uppercase tracking-wider">Effectiveness: 85%</div>
+          <a href="#contact" class="btn-primary w-full text-center mt-6 block">Apply Online</a>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="service-card p-8 cursor-pointer">
+          <div class="icon-box mb-6">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0
