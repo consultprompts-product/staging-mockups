@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior:smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inspire — Hair Salon & Barbershop | Skopje</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --olive: #6B7C45;
+      --olive-dark: #4E5C30;
+      --olive-light: #8FA05A;
+      --olive-pale: #F2F5EC;
+      --charcoal: #1A1A1A;
+    }
+    body { font-family: 'Inter', sans-serif; background: #fff; color: #1A1A1A; }
+    h1, h2, h3, .font-display { font-family: 'Playfair Display', serif; }
+
+    .nav-scrolled { background: rgba(255,255,255,0.97) !important; box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+
+    .hero-bg {
+      background: linear-gradient(135deg, #1A1A1A 0%, #2d3520 50%, #3d4a28 100%);
+    }
+    .olive-gradient {
+      background: linear-gradient(135deg, #6B7C45, #4E5C30);
+    }
+    .section-line {
+      display: inline-block;
+      width: 60px;
+      height: 3px;
+      background: #6B7C45;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Pricing card */
+    .price-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(107,124,69,0.18); }
+    .price-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+
+    /* Gallery */
+    .gallery-item { overflow: hidden; position: relative; }
+    .gallery-item img { transition: transform 0.5s ease; }
+    .gallery-item:hover img { transform: scale(1.08); }
+    .gallery-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(78,92,48,0.85) 0%, transparent 60%);
+      opacity: 0; transition: opacity 0.4s ease;
+      display: flex; align-items: flex-end; padding: 1.25rem;
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+    /* Team */
+    .team-card:hover .team-overlay { opacity: 1; }
+    .team-overlay { opacity: 0; transition: opacity 0.4s ease; }
+
+    /* Testimonial */
+    .testimonial-card { border-left: 4px solid #6B7C45; }
+
+    /* CTA wavy */
+    .cta-section { background: linear-gradient(135deg, #4E5C30, #6B7C45, #8FA05A); }
+
+    /* Form */
+    .form-input:focus { outline: none; border-color: #6B7C45; box-shadow: 0 0 0 3px rgba(107,124,69,0.18); }
+
+    /* Mobile menu */
+    #mobile-menu { display: none; }
+    #mobile-menu.open { display: block; }
+
+    .hamburger-line { display: block; width: 24px; height: 2px; background: currentColor; transition: all 0.3s; margin: 5px 0; }
+
+    /* Scroll reveal */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* Wavy separator */
+    .wavy-sep { position: absolute; bottom: -1px; left: 0; width: 100%; overflow: hidden; line-height: 0; }
+
+    /* Badge */
+    .badge {
+      display: inline-block;
+      background: rgba(107,124,69,0.15);
+      color: #6B7C45;
+      border: 1px solid rgba(107,124,69,0.35);
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 1rem;
+    }
+    .badge-white {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      border-color: rgba(255,255,255,0.35);
+    }
+
+    /* Star rating */
+    .stars { color: #c9b96e; }
+  </style>
+</head>
+<body>
+
+<!-- =========================================================
+     NAVIGATION
+========================================================= -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent py-5 px-6 md:px-12">
+  <div class="max-w-7xl mx-auto flex items-center justify-between">
+    <!-- Logo -->
+    <a href="#" class="flex items-center gap-2">
+      <span class="font-display text-2xl font-900 text-white tracking-tight leading-none">Inspire</span>
+      <span class="hidden sm:block w-px h-6 bg-white/40"></span>
+      <span class="hidden sm:block text-white/70 text-xs font-medium uppercase tracking-widest">Salon & Barbershop</span>
+    </a>
+
+    <!-- Desktop Nav -->
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#services" class="text-white/85 hover:text-white text-sm font-medium transition-colors">Services</a>
+      <a href="#gallery" class="text-white/85 hover:text-white text-sm font-medium transition-colors">Gallery</a>
+      <a href="#team" class="text-white/85 hover:text-white text-sm font-medium transition-colors">Team</a>
+      <a href="#about" class="text-white/85 hover:text-white text-sm font-medium transition-colors">About</a>
+      <a href="#testimonials" class="text-white/85 hover:text-white text-sm font-medium transition-colors">Reviews</a>
+      <a href="#contact" class="olive-gradient text-white text-sm font-semibold px-5 py-2.5 rounded-full shadow-lg hover:shadow-xl hover:opacity-90 transition-all">Book Now</a>
+    </div>
+
+    <!-- Hamburger -->
+    <button id="hamburger" class="md:hidden text-white focus:outline-none" aria-label="Toggle menu">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="md:hidden bg-white rounded-2xl mt-3 mx-0 shadow-2xl overflow-hidden">
+    <div class="flex flex-col divide-y divide-gray-100">
+      <a href="#services" class="px-6 py-4 text-charcoal font-medium hover:bg-olive-pale text-sm">Services & Pricing</a>
+      <a href="#gallery" class="px-6 py-4 text-charcoal font-medium hover:bg-olive-pale text-sm">Gallery</a>
+      <a href="#team" class="px-6 py-4 text-charcoal font-medium hover:bg-olive-pale text-sm">Our Team</a>
+      <a href="#about" class="px-6 py-4 text-charcoal font-medium hover:bg-olive-pale text-sm">About</a>
+      <a href="#testimonials" class="px-6 py-4 text-charcoal font-medium hover:bg-olive-pale text-sm">Reviews</a>
+      <a href="#contact" class="px-6 py-4 bg-[#6B7C45] text-white font-semibold text-sm text-center">Book Appointment</a>
+    </div>
+  </div>
+</nav>
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+<section id="hero" class="hero-bg relative min-h-screen flex items-center overflow-hidden">
+
+  <!-- Background texture overlay -->
+  <div class="absolute inset-0 opacity-10" style="background-image: url('https://www.transparenttextures.com/patterns/diagmonds.png');"></div>
+
+  <!-- Decorative circles -->
+  <div class="absolute -right-32 top-20 w-96 h-96 rounded-full border border-white/5"></div>
+  <div class="absolute -right-16 top-10 w-72 h-72 rounded-full border border-white/8"></div>
+  <div class="absolute -left-24 bottom-10 w-64 h-64 rounded-full" style="background: radial-gradient(circle, rgba(107,124,69,0.25) 0%, transparent 70%);"></div>
+
+  <div class="max-w-7xl mx-auto px-6 md:px-12 w-full pt-28 pb-20 md:pt-36 md:pb-28">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+
+      <!-- Left Content -->
+      <div>
+        <div class="badge badge-white mb-6">Skopje's Premier Salon</div>
+        <h1 class="font-display text-white text-5xl md:text-6xl lg:text-7xl font-900 leading-tight mb-6">
+          Your Style,<br/>
+          <span style="color: #8FA05A;">Elevated.</span>
+        </h1>
+        <p class="text-white/70 text-lg md:text-xl leading-relaxed mb-10 max-w-lg">
+          Modern hair salon and barbershop in the heart of Skopje. Expert stylists, premium products, and a space where your confidence is cut and crafted.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="#contact" class="olive-gradient text-white font-semibold px-8 py-4 rounded-full shadow-2xl hover:opacity-90 hover:shadow-green-900/30 transition-all text-base">
+            Book Appointment
+          </a>
+          <a href="#services" class="bg-white/10 border border-white/25 text-white font-semibold px-8 py-4 rounded-full hover:bg-white/20 transition-all text-base backdrop-blur-sm">
+            See Services
+          </a>
+        </div>
+
+        <!-- Stats -->
+        <div class="flex gap-10 mt-14 pt-10 border-t border-white/15">
+          <div>
+            <p class="font-display text-white text-3xl font-bold">8+</p>
+            <p class="text-white/55 text-sm mt-1">Expert Stylists</p>
+          </div>
+          <div>
+            <p class="font-display text-white text-3xl font-bold">5K+</p>
+            <p class="text-white/55 text-sm mt-1">Happy Clients</p>
+          </div>
+          <div>
+            <p class="font-display text-white text-3xl font-bold">4.9★</p>
+            <p class="text-white/55 text-sm mt-1">Average Rating</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Visual -->
+      <div class="hidden md:block relative">
+        <!-- Main image card -->
+        <div class="relative rounded-3xl overflow-hidden shadow-2xl" style="height: 560px;">
+          <img
+            src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&q=80"
+            alt="Inspire Salon interior"
+            class="w-full h-full object-cover"
+          />
+          <div class="absolute inset-0" style="background: linear-gradient(to bottom, transparent 60%, rgba(26,26,26,0.6) 100%);"></div>
+          <!-- Floating badge -->
+          <div class="absolute bottom-6 left-6 right-6 bg-white/15 backdrop-blur-md rounded-2xl p-5 border border-white/20">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full olive-gradient flex items-center justify-center">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </div>
+              <div>
+                <p class="text-white font-semibold text-sm">Open Every Day</p>
+                <p class="text-white/70 text-xs">Monday – Sunday · 07:00 – 22:00</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating accent card -->
+        <div class="absolute -top-6 -right-6 bg-white rounded-2xl shadow-2xl p-5 w-44">
+          <div class="stars text-xl mb-1">★★★★★</div>
+          <p class="text-charcoal font-semibold text-sm leading-tight">"Absolutely stunning results!"</p>
+          <p class="text-gray-400 text-xs mt-2">— Ana M., Skopje</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wavy bottom -->
+  <div class="wavy-sep">
+    <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0 60L60 50C120 40 240 20 360 18C480 16 600 32 720 38C840 44 960 40 1080 32C1200 24 1320 12 1380 6L1440 0V60H0Z" fill="#ffffff"/>
+    </svg>
+  </div>
+</section>
+
+
+<!-- =========================================================
+     SERVICES & PRICING
+========================================================= -->
+<section id="services" class="py-24 bg-white px-6 md:px-12">
+  <div class="max-w-7xl mx-auto">
+
+    <div class="text-center mb-16 reveal">
+      <div class="badge mb-4">Services & Pricing</div>
+      <h2 class="font-display text-4xl md:text-5xl font-bold text-charcoal mt-4 mb-5">
+        Crafted for Every Style
+      </h2>
+      <p class="text-gray-500 text-lg max-w-xl mx-auto">
+        From precision cuts to luxurious treatments — we offer a complete menu tailored to make you look and feel your very best.
+      </p>
+    </div>
+
+    <!-- Service Tabs -->
+    <div class="flex justify-center mb-12 reveal">
+      <div class="inline-flex bg-gray-100 rounded-full p-1.5">
+        <button onclick="showTab('salon')" id="tab-salon" class="tab-btn px-6 py-2.5 rounded-full text-sm font-semibold transition-all bg-[#6B7C45] text-white">
+          Salon
+        </button>
+        <button onclick="showTab('barber')" id="tab-barber" class="tab-btn px-6 py-2.5 rounded-full text-sm font-semibold transition-all text-gray-600 hover:text-gray-900">
+          Barbershop
+        </button>
+        <button onclick="showTab('treat')" id="tab-treat" class="tab-btn px-6 py-2.5 rounded-full text-sm font-semibold transition-all text-gray-600 hover:text-gray-900">
+          Treatments
+        </button>
+      </div>
+    </div>
+
+    <!-- Salon Services -->
+    <div id="pane-salon" class="service-pane">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 reveal">
+
+        <div class="price-card bg-white border border-gray-100 rounded-2xl p-7 shadow-sm hover:shadow-xl">
+          <div class="w-12 h-12 rounded-xl mb-5 flex items-center justify-center" style="background:#F2F5EC;">
+            <svg class="w-6 h-6" style="color:#6B7C45;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121m0 5.758a3 3 0 10-4.243-4.243 3 3 0 004.243 4.243z"/></svg>
+          </div>
+          <h3 class="font-display text-xl font-bold text-charcoal mb-2">Women's Haircut</h3>
+          <p class="text-gray-500 text-sm mb-5 leading-relaxed">Precision cut, wash & blow-dry. Tailored to your face shape and lifestyle.</p>
+          <div class="flex items-center justify-between">
+            <span class="font-display text-2xl font-bold" style="color:#6B7C45;">800 den</span>
+            <a href="#contact" class="text-sm font-semibold text-gray-500 hover:text-[#6B7C45] transition-colors">Book →</a>
+          </div>
+        </div>
+
+        <div class="price-card bg-white border border-gray-100 rounded-2xl p-7 shadow-sm hover:shadow-xl">
+          <div class="w-12 h-12 rounded-xl mb-5 flex items-center justify-center" style="background:#F2F5EC;">
+            <svg class="w-6 h-6" style="color:#6B7C45;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M5 3l14 9-14 9V3z"/></svg>
+          </div>
+          <h3 class="font-display text-xl font-bold text-charcoal mb-2">Hair Coloring</h3>
+          <p class="text-gray-500 text-sm mb-5 leading-relaxed">Full color, highlights, balayage, or ombre. We use only premium pigments.</p>
+          <div class="flex items-center justify-between">
+            <span class="font-display text-2xl font-bold" style="color:#6B7C45;">from 1,800 den</span>
+            <a href="#contact" class="text-sm font-semibold text-gray-500 hover:text-[#6B7C45] transition-colors">Book →</a>
+          </div>
+        </div>
+
+        <div class="price-card bg-white border border-gray-100 rounded-2xl p-7 shadow-sm hover:shadow-xl relative overflow-hidden">
+          <div class="absolute top-4 right-4 bg-[#6B7C45] text-white text-xs font-bold px-2 py-1 rounded-full">Popular</div>
+          <div class="w-12 h-12 rounded-xl mb-5 flex items-center justify-center" style="background:#F2F5EC;">
+            <svg class="w-6 h-6" style="color:#6B7C45;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+          </div>
+          <h3 class="font-display text-xl font-bold text-charcoal mb-2">Balayage & Gloss</h3>
+          <p class="text-gray-500 text-sm mb-5 leading-relaxed">Sun-kissed highlights blended seamlessly with a glossy finish treatment.</p>
+          <div class="flex items-center justify-between">
+            <span class="font-display text-2xl font-bold" style="color:#6B7C45;">from 3,200 den</span>
+            <a href="#contact" class="text-sm font-semibold text-gray-500 hover:text-[#6B7C45] transition-colors">Book →</a>
+          </div>
+        </div>
+
+        <div class="price-card bg-white border border-gray-100 rounded-2xl p-7 shadow-sm hover:shadow-xl">
+          <div class="w-12 h-12 rounded-xl mb-5 flex items-center justify-center" style="background:#F2F5EC;">
+            <svg class="w-6 h-6" style="color:#6B7C45;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
+          </div>
+          <h3 class="font-display text-xl font-bold text-charcoal mb-2">Styling & Blowout</h3>
+          <p class="text-gray-500 text-sm mb-5 leading-relaxed">Professional wash, blow-dry, and style for any occasion. Red carpet ready.</p>
+          <div class="flex items-center justify-between">
+            <span class="font-display text-2xl font-bold" style="color:#6B7C45;">600 den</span>
+            <a href="#contact" class="text-sm font-semibold text-gray-500 hover:text-[#6B7C45] transition-colors">Book →</a>
+          </div>
+        </div>
+
+        <div class="price-card bg-white border border-gray-100 rounded-2xl p-7 shadow-sm hover:shadow-xl">
+          <div class="w-12 h-12 rounded-xl mb-5 flex items-center justify-center" style="background:#F2F5EC;">
+            <svg class="w-6 h-6" style="color:#6B7C45;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" stroke-width="1.8"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 20v-1a6 6 0 0112 0v1"/></svg>
+          </div>
+          <h3 class="font-display text-xl font-bold text-charcoal mb-2">Bridal Package</h3>
+          <p class="text-gray-500 text-sm mb-5 leading-relaxed">Trial session + wedding day styling. Includes updo, accessories, and touch-ups.</p>
+          <div class="flex items-center justify-between">
+            <span class="font-display text-2xl font-bold" style="color:#6B7C45;">from 5,000 den</span>
+            <a href="#contact" class="text-sm font-semibold text-gray-500 hover:text-[#6B7C45] transition-colors">Book →</a>
+          </div>
+        </div>
+
+        <div class="price-card bg-white border border-gray-100 rounded-2xl p-7 shadow-sm hover:shadow-xl">
+          <div class="w-12 h-12 rounded-xl mb-5 flex items-center justify-center" style="background:#F2F5EC;">
+            <svg class="w-6 h-6" style="color:#6B7C45;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+          </div>
+          <h3 class="font-display text-xl font-bold text-charcoal mb-2">Kids' Cut</h3>
+          <p class="text-gray-500 text-sm mb-5 leading-relaxed">Gentle, fun, and fast styling for children up to age 12.</p>
+          <div class="flex items-center justify-between">
+            <span class="font-display text-2xl font-bold" style="color:#6B7C45;">400 den</span>
+            <a href="#contact" class="text-sm font-semibold text-gray-500 hover:text-[#6B7C45] transition-colors">Book →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Barber Services -->
+    <div id="pane-barber" class="service-pane hidden">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 reveal">
+
+        <div class="price-card bg-white border border-gray-100 rounded-2xl p-7 shadow-sm hover:shadow-xl">
+          <div class="w-12 h-12 rounded-xl mb-5 flex items-center justify-center" style="background:#F2F5EC;">
+            <svg class="w-6 h-6" style="color:#6B7C45;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121m0 5.758a3 3 0 10-4.243-4.243 3 3 0 004.243 4.243z"/></svg>
+          </div>
+          <h3 class="font-display text-xl font-bold text-charcoal mb-2">Classic Haircut</h3>
+          <p class="text-gray-500 text-sm mb-5 leading-relaxed">Clipper & scissor cut, styled to perfection. Includes wash & finish.</p>
+          <div class="flex items-center justify-between">
+            <span class="font-display text-2xl font-bold" style="color:#6B7C45;">500 den</span>
+            <a href="#contact" class="text-sm font-semibold text-gray-500 hover:text-[#6B7C45] transition-colors">Book →</a>
+          </div>
+        </div>
+
+        <div class="price-card bg-white border border-gray-100 rounded-2xl p-7 shadow-sm hover:shadow-xl relative overflow-hidden">
+          <div class="absolute top-4 right-4 bg-[#6B7C45] text-white text-xs font-bold px-2 py-1 rounded-full">Popular</div>
+          <div class="w-12 h-12 rounded-xl mb-5 flex items-center justify-center" style="background:#F2F5EC;">
+            <svg class="w-6 h-6" style="color:#6B7C45;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4" stroke-width="1.8"/><path stroke-linecap="round" stroke-width="1.8" d="M8 12h8M12 8v8"/></svg>
+          </div>
+          <h3 class="font-display text-xl font-bold text-charcoal mb-2">Cut & Beard Trim</h3>
+          <p class="text-gray-500 text-sm mb-5 leading-relaxed">Full haircut + beard shaping and lining. The complete barbershop experience.</p>
+          <div class="flex items-center justify-between">
+            <span class="font-display text-2xl font-bold" style="color:#6B7C45;">750 den</span>
+            <a href="#contact" class="text-sm font-semibold text-gray-500 hover:text-[#6B7C45] transition-colors">Book →</a>
+          </div>
+        </div>
+
+        <div class="price-card bg-white border border-gray-100 rounded-2xl p-7 shadow-sm hover:shadow-xl">
+          <div class="w-12 h-12 rounded-xl mb-5 flex items-center justify-center" style="background:#F2F5EC;">
+            <svg class="w-6 h-6" style="color:#6B7C45;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 9l4-4 4 4m0 6l-4 4-4-4"/></svg>
+          </div>
+          <h3 class="font-display text-xl font-bold text-charcoal mb-2">Hot Towel Shave</h3>
+          <p class="text-gray-500 text-sm mb-5 leading-relaxed">Traditional straight-razor shave with hot towel prep and aftershave balm.</p>
+          <div class="flex items-center justify-between">
+            <span class="font-display text-2xl font-bold" style="color:#6B7C45;">600 den</span>
+            <a href="#contact" class="text-sm font-semibold text-gray-500 hover:text-[#6B7C45] transition-colors">Book →</a>
+          </div>
+        </div>
+
+        <div class="price-card bg-white border border-gray-100 rounded-2xl p-7 shadow-sm hover:shadow-xl">
+          <div class="w-12 h-12 rounded-xl mb-5 flex items-center justify-center" style="background:#F2F5EC;">
+            <svg class="w-6 h-6" style="color:#6B7C45;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 3C7 3 3 7.5 3 12s4 9 9 9 9-4 9-9-4-9-9-9z"/><path stroke-linecap="round" stroke-width="1.8" d="M9 12h6"/></svg>
+          </div>
+          <h3 class="font-display text-xl font-bold text-charcoal mb-2">Beard Design</h3>
+          <p class="text-gray-500 text-sm mb-5 leading-relaxed">Custom beard sculpting and line-up to craft your signature look.</p>
+          <div class="flex items-center justify-between">
+            <span class="font-display text-2xl font-bold" style="color:#6B7C45;">400 den</span>
+            <a href="#contact" class="text-sm font-semibold text-gray-500 hover:text-[#6B7C45] transition-colors">Book →</a>
+          </div>
+        </div>
+
+        <div class="price-card bg-white border border-gray-100 rounded-2xl p-7 shadow-sm hover:shadow-xl">
+          <div class="w-12 h-12 rounded-xl mb-5 flex items-center justify-center" style="background:#F2F5EC;">
+            <svg class="w-6 h-6" style="color:#6B7C45;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M5 3l14 9-14 9V3z"/></svg>
+          </div>
+          <h3 class="font-display text-xl font-bold text-charcoal mb-2">Gray Blending</h3>
+          <p class="text-gray-500 text-sm mb-5 leading-relaxed">Subtle toning or full color for beard and hair to blend in grey naturally.</p>
+          <div class="flex items-center justify-between">
+            <span class="font-display text-2xl font-bold" style="color:#6B7C45;">900 den</span>
+            <a href="#contact" class="text-sm font-semibold text-gray-500 hover:text-[#6B7C45] transition-colors">Book →</a>
+          </div>
+        </div>
+
+        <div class="price-card bg-white border border-gray-100 rounded-2xl p-7 shadow-sm hover:shadow-xl">
+          <div class="w-12 h-12 rounded-xl mb-5 flex items-center justify-center" style="background:#F2F5EC;">
+            <svg class="w-6 h-6" style="color:#6B7C45;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h3 class="font-display text-xl font-bold text-charcoal mb-2">VIP Grooming</h3>
+          <p class="text-gray-500 text-sm mb-5 leading-relaxed">Full cut + shave + facial mask + eyebrow threading. The premium groom.</p>
+          <div class="flex items-center justify-between">
+            <span class="font-display text-2xl font-bold" style="color:#6B7C45;">1,400 den</span>
+            <a href="#contact" class="text-sm font-semibold text-gray-500 hover:text-[#6B7C45] transition-colors">Book →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Treatments -->
+    <div id="pane-treat" class="service-pane hidden">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 reveal">
+
+        <div class="price-card bg-white border border-gray-100 rounded-2xl p-7 shadow-sm hover:shadow-xl">
+          <div class="w-12 h-12 rounded-xl mb-5 flex items-center justify-center" style="background:#F2F5EC;">
+            <svg class="w-6 h-6" style="color:#6B7C45;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+          </div>
+          <h3 class="font-display text-xl font-bold text-charcoal mb-2">Keratin Smoothing</h3>
+          <p class="text-gray-500 text-sm mb-5 leading-relaxed">Frizz-eliminating keratin treatment that lasts 3–5 months. Brazilian formula.</p>
+          <div class="flex items-center justify-between">
+            <span class="font-display text-2xl font-bold" style="color:#6B7C45;">from 4,500 den</span>
+            <a href="#contact" class="text-sm font-semibold text-gray-500 hover:text-[#6B7C45] transition-colors">Book →</a>
+          </div>
+        </div>
+
+        <div class="price-card bg-white border border-gray-100 rounded-2xl p-7 shadow-sm hover:shadow-xl">
+          <div class="w-12 h-12 rounded-xl mb-5 flex items-center justify-center" style="background:#F2F5EC;">
+            <svg class="w-6 h-6" style="color:#6B7C45;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+          </div>
+          <h3 class="font-display text-xl font-bold text-charcoal mb-2">Scalp Treatment</h3>
+          <p class="text-gray-500 text-sm mb-5 leading-relaxed">Deep-cleansing scalp analysis and treatment for dandruff, dryness, or hair loss.</p>
+          <div class="flex items-center justify-between">
+            <span class="font-display text-2xl font-bold" style="color:#6B7C45;">1,200 den</span>
+            <a href="#contact" class="text-sm font-semibold text-gray-500 hover:text-[#6B7C45] transition-colors">Book →</a>
+          </div>
+        </div>
+
+        <div class="price-card bg-white border border-gray-100 rounded-2xl p-7 shadow-sm hover:shadow-xl relative overflow-hidden">
+          <div class="absolute top-4 right-4 bg-[#6B7C45] text-white text-xs font-bold px-2 py-1 rounded-full">Popular</div>
+          <div class="w-12 h-12 rounded-xl mb-5 flex items-center justify-center" style="background:#F2F5EC;">
+            <svg class="w-6 h-6" style="color:#6B7C45;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4"/><circle cx="12" cy="14" r="6" stroke-width="1.8"/></svg>
+          </div>
+          <h3 class="font-display text-xl font-bold text-charcoal mb-2">Deep Conditioning</h3>
+          <p class="text-gray-500 text-sm mb-5 leading-relaxed">Intense moisture repair mask + steam for dry, damaged, or chemically treated hair.</p>
+          <div class="flex items-center justify-between">
+            <span class="font-display text-2xl font-bold" style="color:#6B7C45;">900 den</span>
+            <a href="#contact" class="text-sm font-semibold text-gray-500 hover:text-[#6B7C45] transition-colors">Book →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="text-center mt-12 reveal">
+      <a href="#contact" class="olive-gradient text-white font-semibold px-8 py-4 rounded-full shadow-lg hover:opacity-90 transition-all inline-block">
+        Book Your Service →
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- =========================================================
+     GALLERY / BEFORE & AFTER
+========================================================= -->
+<section id="gallery" class="py-24 px-6 md:px-12" style="background:#F2F5EC;">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16 reveal">
+      <div class="badge mb-4">Portfolio</div>
+      <h2 class="font-display text-4xl md:text-5xl font-bold text-charcoal mt-4 mb-5">
+        The Inspire Difference
+      </h2>
+      <p class="text-gray-500 text-lg max-w-xl mx-auto">
+        Transformations that speak louder than words. Real results from our Skopje studio.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 reveal">
+
+      <div class="gallery-item rounded-2xl col-span-2 row-span-2 cursor-pointer" style="height:420px;">
+        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80" alt="Hair transformation" class="w-full h-full object-cover rounded-2xl" />
+        <div class="gallery-overlay rounded-2xl">
+          <span class="text-white text-sm font-semibold">Balayage Transformation</span>
+        </div>
+      </div>
+
+      <div class="gallery-item rounded-2xl cursor-pointer" style="height:200px;">
+        <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=500&q=80" alt="Men's barbershop cut" class="w-full h-full object-cover rounded-2xl" />
+        <div class="gallery-overlay rounded-2xl">
+          <span class="text-white text-sm font-semibold">Classic Fade</span>
+        </div>
+      </div>
+
+      <div class="gallery-item rounded-2xl cursor-pointer" style="height:200px;">
+        <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=500&q=80" alt="Hair coloring" class="w-full h-full object-cover rounded-2xl" />
+        <div class="gallery-overlay rounded-2xl">
+          <span class="text-white text-sm font-semibold">Creative Color</span>
+        </div>
+      </div>
+
+      <div class="gallery-item rounded-2xl cursor-pointer" style="height:200px;">
+        <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=500&q=80" alt="Barbershop styling" class="w-full h-full object-cover rounded-2xl" />
+        <div class="gallery-overlay rounded-2xl">
+          <span class="text-white text-sm font-semibold">Textured Crop</span>
+        </div>
+      </div>
+
+      <div class="gallery-item rounded-2xl cursor-pointer" style="height:200px;">
+        <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=500&q=80" alt="Hair care treatment" class="w-full h-full object-cover rounded-2xl" />
+        <div class="gallery-overlay rounded-2xl">
+          <span class="text-white text-sm font-semibold">Keratin Treatment</span>
+        </div>
+      </div>
+
+      <div class="gallery-item rounded-2xl cursor-pointer" style="height:200px;">
+        <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=500&q=80" alt="Women styling" class="w-full h-full object-cover rounded-2xl" />
+        <div class="gallery-overlay rounded-2xl">
+          <span class="text-white text-sm font-semibold">Precision Cut</span>
+        </div>
+      </div>
+
+      <div class="gallery-item rounded-2xl cursor-pointer" style="height:200px;">
