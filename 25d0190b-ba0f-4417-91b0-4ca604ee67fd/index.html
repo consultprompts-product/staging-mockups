@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior:smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DentalPlus – Your Family Dental Practice in Kriva Palanka</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#1A6DB5',
+            primaryDark: '#145999',
+            primaryLight: '#E8F2FB',
+            accent: '#4CACD4',
+            soft: '#F0F7FF',
+            muted: '#6B8BA4',
+            dark: '#1A2B3C',
+          },
+          fontFamily: {
+            serif: ['Playfair Display', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; color: #1A2B3C; }
+    .hero-gradient { background: linear-gradient(135deg, #1A6DB5 0%, #4CACD4 60%, #E8F2FB 100%); }
+    .card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .card-hover:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(26,109,181,0.15); }
+    .nav-link { position: relative; }
+    .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: #1A6DB5; transition: width 0.3s ease; }
+    .nav-link:hover::after { width: 100%; }
+    .tooth-bg { background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231A6DB5' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
+    .wave-divider { position: relative; }
+    .wave-divider::after { content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 60px; background: white; clip-path: ellipse(55% 100% at 50% 100%); }
+    .testimonial-card { background: linear-gradient(135deg, #ffffff 0%, #F0F7FF 100%); }
+    .floating-badge { animation: float 3s ease-in-out infinite; }
+    @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-8px); } }
+    .section-fade { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .section-fade.visible { opacity: 1; transform: translateY(0); }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: #1A6DB5; box-shadow: 0 0 0 3px rgba(26,109,181,0.1); }
+  </style>
+</head>
+<body class="bg-white overflow-x-hidden">
+
+  <!-- NAVIGATION -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-blue-50 transition-shadow duration-300" style="transition: box-shadow 0.3s;">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 lg:h-20">
+        <!-- Logo -->
+        <a href="#home" class="flex items-center gap-2">
+          <div class="w-9 h-9 bg-primary rounded-lg flex items-center justify-center">
+            <svg viewBox="0 0 24 24" fill="white" class="w-5 h-5">
+              <path d="M12 2C9.5 2 7.5 3.5 7 5.5C6.5 3.5 4.5 2 2 2C-0.5 2 -2.5 4 -2.5 6.5C-2.5 10 2 14 7 18C12 14 16.5 10 16.5 6.5C16.5 4 14.5 2 12 2Z" transform="translate(5, 2) scale(0.8)"/>
+              <path d="M12 3C9.8 3 8 4.3 7.5 6C7 4.3 5.2 3 3 3C0.5 3 -1 4.8 -1 7C-1 10.5 3.5 14.5 7.5 18C11.5 14.5 16 10.5 16 7C16 4.8 14.5 3 12 3Z" transform="translate(4.5, 2) scale(0.75)" fill="white" opacity="0.3"/>
+              <path d="M12 2C10 2 8.3 3.2 7.5 5C7.5 5 7.5 20 7.5 20C7.5 20 9 15 9 12C9 10 10 9 12 9C14 9 15 10 15 12C15 15 16.5 20 16.5 20C16.5 20 16.5 5 16.5 5C15.7 3.2 14 2 12 2Z" transform="translate(-0.5, 1)" opacity="0"/>
+              <path fill-rule="evenodd" d="M12 2.5C9.8 2.5 8 4 7.5 6.2C7 4 5.2 2.5 3 2.5C0.8 2.5 -0.5 4.2 -0.5 6.3C-0.5 9.5 4 13.5 7.5 16.5C11 13.5 15.5 9.5 15.5 6.3C15.5 4.2 14.2 2.5 12 2.5Z" transform="translate(4.5, 2) scale(0.8)"/>
+            </svg>
+          </div>
+          <div>
+            <span class="text-xl font-bold text-primary" style="font-family:'Playfair Display',serif;">Dental<span class="text-accent">Plus</span></span>
+            <p class="text-xs text-muted -mt-1 hidden sm:block">Kriva Palanka</p>
+          </div>
+        </a>
+        <!-- Desktop Nav -->
+        <div class="hidden lg:flex items-center gap-8">
+          <a href="#services" class="nav-link text-sm font-medium text-dark hover:text-primary transition-colors">Services</a>
+          <a href="#about" class="nav-link text-sm font-medium text-dark hover:text-primary transition-colors">About Us</a>
+          <a href="#team" class="nav-link text-sm font-medium text-dark hover:text-primary transition-colors">Our Team</a>
+          <a href="#testimonials" class="nav-link text-sm font-medium text-dark hover:text-primary transition-colors">Reviews</a>
+          <a href="#insurance" class="nav-link text-sm font-medium text-dark hover:text-primary transition-colors">Insurance</a>
+          <a href="#faq" class="nav-link text-sm font-medium text-dark hover:text-primary transition-colors">FAQ</a>
+          <a href="#contact" class="bg-primary hover:bg-primaryDark text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-all duration-200 hover:shadow-lg hover:shadow-blue-200">Book Appointment</a>
+        </div>
+        <!-- Mobile Menu Button -->
+        <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-lg text-dark hover:bg-soft transition-colors" aria-label="Open menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden lg:hidden bg-white border-t border-blue-50 px-4 py-4 space-y-3">
+      <a href="#services" class="block text-sm font-medium text-dark hover:text-primary py-2 transition-colors">Services</a>
+      <a href="#about" class="block text-sm font-medium text-dark hover:text-primary py-2 transition-colors">About Us</a>
+      <a href="#team" class="block text-sm font-medium text-dark hover:text-primary py-2 transition-colors">Our Team</a>
+      <a href="#testimonials" class="block text-sm font-medium text-dark hover:text-primary py-2 transition-colors">Reviews</a>
+      <a href="#insurance" class="block text-sm font-medium text-dark hover:text-primary py-2 transition-colors">Insurance</a>
+      <a href="#faq" class="block text-sm font-medium text-dark hover:text-primary py-2 transition-colors">FAQ</a>
+      <a href="#contact" class="block bg-primary text-white text-sm font-semibold px-5 py-2.5 rounded-full text-center transition-colors hover:bg-primaryDark">Book Appointment</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="home" class="pt-16 lg:pt-20 min-h-screen flex items-center relative overflow-hidden">
+    <div class="absolute inset-0 hero-gradient opacity-95"></div>
+    <div class="absolute inset-0 tooth-bg"></div>
+    <!-- Decorative circles -->
+    <div class="absolute top-20 right-0 w-96 h-96 bg-white/10 rounded-full -translate-x-12 translate-y-0 blur-3xl"></div>
+    <div class="absolute bottom-0 left-0 w-72 h-72 bg-white/10 rounded-full translate-x-12 -translate-y-12 blur-2xl"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <!-- Left Content -->
+        <div>
+          <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm text-white text-sm font-medium px-4 py-2 rounded-full mb-6">
+            <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+            Now Accepting New Patients
+          </div>
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6" style="font-family:'Playfair Display',serif;">
+            Your Smile Deserves <span class="text-yellow-200">the Best</span> Care
+          </h1>
+          <p class="text-lg text-blue-100 mb-8 leading-relaxed max-w-xl">
+            At DentalPlus in Kriva Palanka, we combine advanced dental technology with a gentle, patient-first approach — so every visit feels comfortable, and every smile shines brighter.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="#contact" class="bg-white text-primary font-semibold px-8 py-4 rounded-full hover:bg-blue-50 transition-all duration-200 text-center shadow-xl hover:shadow-2xl hover:-translate-y-1 transform">
+              Book an Appointment
+            </a>
+            <a href="#services" class="border-2 border-white/60 text-white font-semibold px-8 py-4 rounded-full hover:bg-white/10 transition-all duration-200 text-center backdrop-blur-sm">
+              Explore Services
+            </a>
+          </div>
+          <!-- Stats -->
+          <div class="flex gap-8 mt-12">
+            <div>
+              <p class="text-3xl font-bold text-white" style="font-family:'Playfair Display',serif;">15+</p>
+              <p class="text-blue-200 text-sm">Years Experience</p>
+            </div>
+            <div class="border-l border-white/30 pl-8">
+              <p class="text-3xl font-bold text-white" style="font-family:'Playfair Display',serif;">5,000+</p>
+              <p class="text-blue-200 text-sm">Patients Served</p>
+            </div>
+            <div class="border-l border-white/30 pl-8">
+              <p class="text-3xl font-bold text-white" style="font-family:'Playfair Display',serif;">4.9★</p>
+              <p class="text-blue-200 text-sm">Patient Rating</p>
+            </div>
+          </div>
+        </div>
+        <!-- Right Visual -->
+        <div class="hidden lg:flex justify-center items-center relative">
+          <div class="relative w-80 h-80">
+            <!-- Main circle -->
+            <div class="absolute inset-0 bg-white/15 backdrop-blur-sm rounded-full border border-white/30"></div>
+            <!-- Inner visual -->
+            <div class="absolute inset-8 bg-white/20 rounded-full flex items-center justify-center">
+              <svg viewBox="0 0 120 120" class="w-40 h-40 opacity-90">
+                <!-- Tooth SVG illustration -->
+                <defs>
+                  <linearGradient id="toothGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#E8F2FB;stop-opacity:1" />
+                  </linearGradient>
+                </defs>
+                <path d="M60 8 C45 8, 32 18, 30 30 C28 40, 30 48, 28 58 C26 70, 24 80, 30 88 C34 94, 40 96, 45 92 C48 88, 48 82, 52 78 C54 76, 56 75, 60 75 C64 75, 66 76, 68 78 C72 82, 72 88, 75 92 C80 96, 86 94, 90 88 C96 80, 94 70, 92 58 C90 48, 92 40, 90 30 C88 18, 75 8, 60 8Z" fill="url(#toothGrad)" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+                <path d="M60 8 C45 8, 32 18, 30 30 C28 35, 29 40, 31 45 C40 40, 52 36, 60 36 C68 36, 80 40, 89 45 C91 40, 92 35, 90 30 C88 18, 75 8, 60 8Z" fill="rgba(255,255,255,0.3)"/>
+              </svg>
+            </div>
+            <!-- Floating badges -->
+            <div class="floating-badge absolute -top-4 -right-4 bg-white rounded-2xl shadow-xl px-4 py-3 flex items-center gap-2">
+              <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              </div>
+              <span class="text-xs font-semibold text-dark">Pain-Free Treatment</span>
+            </div>
+            <div class="floating-badge absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-xl px-4 py-3 flex items-center gap-2" style="animation-delay: 1.5s;">
+              <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              </div>
+              <span class="text-xs font-semibold text-dark">Easy Scheduling</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Wave bottom -->
+    <div class="absolute bottom-0 left-0 right-0">
+      <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 80 L0 40 Q360 0 720 40 Q1080 80 1440 40 L1440 80 Z" fill="white"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="py-20 lg:py-28 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 section-fade">
+        <span class="text-primary text-sm font-semibold uppercase tracking-widest">What We Offer</span>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-dark mt-3 mb-4" style="font-family:'Playfair Display',serif;">Comprehensive Dental Care</h2>
+        <p class="text-muted max-w-2xl mx-auto text-lg">From routine cleanings to advanced restorative treatments, our full-service practice covers every aspect of your family's oral health.</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <!-- Service Card 1 -->
+        <div class="card-hover bg-soft border border-blue-100 rounded-2xl p-7 section-fade">
+          <div class="w-14 h-14 bg-primaryLight rounded-xl flex items-center justify-center mb-5">
+            <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-dark mb-3" style="font-family:'Playfair Display',serif;">General & Preventive Care</h3>
+          <p class="text-muted leading-relaxed mb-4">Regular check-ups, professional cleanings, X-rays, and fluoride treatments to keep your teeth and gums healthy for life.</p>
+          <ul class="space-y-1.5">
+            <li class="flex items-center gap-2 text-sm text-dark"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Dental Exams & X-Rays</li>
+            <li class="flex items-center gap-2 text-sm text-dark"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Professional Teeth Cleaning</li>
+            <li class="flex items-center gap-2 text-sm text-dark"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Gum Disease Screening</li>
+          </ul>
+        </div>
+
+        <!-- Service Card 2 -->
+        <div class="card-hover bg-soft border border-blue-100 rounded-2xl p-7 section-fade">
+          <div class="w-14 h-14 bg-primaryLight rounded-xl flex items-center justify-center mb-5">
+            <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-dark mb-3" style="font-family:'Playfair Display',serif;">Cosmetic Dentistry</h3>
+          <p class="text-muted leading-relaxed mb-4">Transform your smile with our advanced cosmetic treatments designed to boost your confidence and leave a lasting impression.</p>
+          <ul class="space-y-1.5">
+            <li class="flex items-center gap-2 text-sm text-dark"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Teeth Whitening</li>
+            <li class="flex items-center gap-2 text-sm text-dark"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Porcelain Veneers</li>
+            <li class="flex items-center gap-2 text-sm text-dark"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Smile Makeovers</li>
+          </ul>
+        </div>
+
+        <!-- Service Card 3 -->
+        <div class="card-hover bg-soft border border-blue-100 rounded-2xl p-7 section-fade">
+          <div class="w-14 h-14 bg-primaryLight rounded-xl flex items-center justify-center mb-5">
+            <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-dark mb-3" style="font-family:'Playfair Display',serif;">Restorative Dentistry</h3>
+          <p class="text-muted leading-relaxed mb-4">Repair and restore damaged teeth using the latest materials and techniques for natural-looking, long-lasting results.</p>
+          <ul class="space-y-1.5">
+            <li class="flex items-center gap-2 text-sm text-dark"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Crowns & Bridges</li>
+            <li class="flex items-center gap-2 text-sm text-dark"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Tooth-Coloured Fillings</li>
+            <li class="flex items-center gap-2 text-sm text-dark"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Dental Implants</li>
+          </ul>
+        </div>
+
+        <!-- Service Card 4 -->
+        <div class="card-hover bg-soft border border-blue-100 rounded-2xl p-7 section-fade">
+          <div class="w-14 h-14 bg-primaryLight rounded-xl flex items-center justify-center mb-5">
+            <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-dark mb-3" style="font-family:'Playfair Display',serif;">Orthodontics</h3>
+          <p class="text-muted leading-relaxed mb-4">Straighten your teeth discreetly with modern orthodontic solutions for both children and adults.</p>
+          <ul class="space-y-1.5">
+            <li class="flex items-center gap-2 text-sm text-dark"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Clear Aligners</li>
+            <li class="flex items-center gap-2 text-sm text-dark"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Traditional Braces</li>
+            <li class="flex items-center gap-2 text-sm text-dark"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Retainers</li>
+          </ul>
+        </div>
+
+        <!-- Service Card 5 -->
+        <div class="card-hover bg-soft border border-blue-100 rounded-2xl p-7 section-fade">
+          <div class="w-14 h-14 bg-primaryLight rounded-xl flex items-center justify-center mb-5">
+            <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-dark mb-3" style="font-family:'Playfair Display',serif;">Children's Dentistry</h3>
+          <p class="text-muted leading-relaxed mb-4">A warm, child-friendly environment that makes dental visits fun and helps little ones build healthy habits from an early age.</p>
+          <ul class="space-y-1.5">
+            <li class="flex items-center gap-2 text-sm text-dark"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>First Dental Visits</li>
+            <li class="flex items-center gap-2 text-sm text-dark"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Sealants & Fluoride</li>
+            <li class="flex items-center gap-2 text-sm text-dark"><span class="w-1.5 h-1.5 bg-accent rounded-full"></span>Cavity Prevention</li>
+          </ul>
+        </div>
+
+        <!-- Service Card 6 -->
+        <div class="card-hover bg-primary rounded-2xl p-7 section-fade">
