@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior:smooth;">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BilaZora</title>
+  <style>
+  :root {
+    --bg: #141A10; --surface: #1E2718; --border: #2E3A20;
+    --heading: #F5F0E8; --body: #A8A890; --accent: #8FB54E; --accent2: #D4C47A;
+    --font-heading: Georgia, "Times New Roman", serif; --font-body: Georgia, "Times New Roman", serif;
+    --radius-card: 2px; --radius-button: 2px;
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--body); font-family: var(--font-body); margin: 0; }
+  h1, h2, h3, .heading { font-family: var(--font-heading); color: var(--heading); }
+  .surface { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    background: var(--accent); color: var(--bg); font-weight: 600;
+    padding: 0.75rem 1.75rem; border-radius: var(--radius-button);
+    text-decoration: none; border: none; cursor: pointer; transition: opacity 0.2s;
+  }
+  .btn:hover { opacity: 0.88; }
+  .btn:disabled { opacity: 0.6; cursor: not-allowed; }
+  .btn-outline {
+    display: inline-flex; align-items: center; justify-content: center;
+    background: transparent; color: var(--heading); font-weight: 600;
+    padding: 0.75rem 1.75rem; border-radius: var(--radius-button);
+    border: 1px solid var(--border); text-decoration: none; cursor: pointer;
+  }
+  .container { max-width: 72rem; margin: 0 auto; padding: 0 1.5rem; }
+  .section { padding: 5rem 0; }
+  .muted { color: var(--body); opacity: 0.75; }
+  .accent2 { color: var(--accent2); }
+  .form-input {
+    width: 100%; padding: 0.75rem 1rem; border-radius: var(--radius-button);
+    border: 1px solid var(--border); background: var(--bg); color: var(--body);
+    font-family: var(--font-body); font-size: 0.95rem;
+  }
+
+  /* Layout utilities shared by every section fragment — kept here, not
+     inline in the fragments, so responsive behavior (media queries) is
+     defined once instead of duplicated per file. */
+  .text-h1 { font-size: 3rem; font-weight: 800; line-height: 1.08; margin: 0 0 1.25rem; }
+  .text-h2 { font-size: 2.25rem; font-weight: 800; line-height: 1.15; margin: 0 0 1rem; }
+  .text-h3 { font-size: 1.35rem; font-weight: 700; margin: 0 0 0.5rem; }
+  .text-lede { font-size: 1.1rem; line-height: 1.6; margin: 0 0 2rem; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: center; }
+  .grid-2-wide { display: grid; grid-template-columns: 1.15fr 1fr; gap: 3rem; align-items: center; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  .flex-between { display: flex; align-items: center; justify-content: space-between; }
+  .flex-center { display: flex; align-items: center; justify-content: center; }
+  .stack { display: flex; flex-direction: column; }
+  .center { text-align: center; }
+  @media (max-width: 768px) {
+    .section { padding: 3rem 0; }
+    .grid-2, .grid-2-wide, .grid-3 { grid-template-columns: 1fr; }
+    .text-h1 { font-size: 2.25rem; }
+    .text-h2 { font-size: 1.75rem; }
+  }
+</style>
+</head>
+<body>
+  <nav style="position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:2px solid var(--accent);">
+    <div class="container flex-between" style="padding:1rem 0;">
+      <span class="heading" style="font-weight:900;font-size:1.25rem;text-transform:uppercase;letter-spacing:-0.02em;">BilaZora</span>
+      <div class="stack" style="flex-direction:row;gap:1.5rem;align-items:center;">
+        <a href="#" class="muted" style="text-decoration:none;font-size:0.85rem;font-weight:600;text-transform:uppercase;">Menu</a><a href="#" class="muted" style="text-decoration:none;font-size:0.85rem;font-weight:600;text-transform:uppercase;">Make a Reservation</a>
+        <a href="#contact" class="btn" style="padding:0.6rem 1.5rem;font-size:0.8rem;text-transform:uppercase;font-weight:700;">Book Your Evening</a>
+      </div>
+    </div>
+  </nav>
+  <header class="section">
+  <div class="container grid-2-wide">
+    <div>
+      <h1 class="heading text-h1">A Sanctuary of Flavor in Sveti Nikole</h1>
+      <p class="muted text-lede">Indulge in an atmosphere where candlelight, cuisine, and culture converge beautifully every evening.</p>
+      <a href="#contact" class="btn">Book Your Evening</a>
+    </div>
+    <div class="surface" style="padding:2rem;">
+      <p class="heading text-h3">Signature Lamb Slow Roast</p>
+      <p class="muted" style="font-size:0.95rem;line-height:1.55;margin:0 0 1rem;">Tender slow-roasted lamb with aromatic herbs, a beloved BilaZora signature served with seasonal sides.</p>
+      <p style="color:var(--accent);font-weight:700;margin:0 0 0.25rem;">House Specialty</p>
+      <p class="accent2" style="font-weight:700;margin:0;">View Full Menu →</p>
+    </div>
+  </div>
+</header>
+
+  <section class="section" id="services">
+  <div class="container">
+    <h2 class="heading text-h2 center">What We Offer</h2>
+    <div class="grid-3">
+      
+      <div class="surface" style="padding:1.75rem;">
+        <p class="heading text-h3">Evening Dining</p>
+        <p class="muted" style="font-size:0.95rem;line-height:1.55;margin:0;">Immerse yourself in a luxurious dinner atmosphere open until 1:00 AM every Friday and Saturday night.</p>
+      </div>
+      
+      <div class="surface" style="padding:1.75rem;">
+        <p class="heading text-h3">Curated Wine &amp; Drinks</p>
+        <p class="muted" style="font-size:0.95rem;line-height:1.55;margin:0;">Pair your meal with a handpicked selection of Macedonian and international wines and craft cocktails.</p>
+      </div>
+      
+      <div class="surface" style="padding:1.75rem;">
+        <p class="heading text-h3">Table Reservations</p>
+        <p class="muted" style="font-size:0.95rem;line-height:1.55;margin:0;">Secure your preferred table online and arrive to a seamlessly arranged, intimate dining experience.</p>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+  <section class="section" id="testimonials">
+  <div class="container">
+    <h2 class="heading text-h2 center">What Clients Say</h2>
+    <div class="grid-2">
+      
+      <div class="surface" style="padding:1.75rem;">
+        <p style="font-size:1.05rem;line-height:1.6;margin:0 0 1rem;">&ldquo;The dark, intimate atmosphere at BilaZora makes every dinner feel like a special occasion.&rdquo;</p>
+        <p class="heading" style="font-weight:700;margin:0;">Elena V.</p>
+        <p class="muted" style="font-size:0.85rem;margin:0;">Food Critic</p>
+      </div>
+      
+      <div class="surface" style="padding:1.75rem;">
+        <p style="font-size:1.05rem;line-height:1.6;margin:0 0 1rem;">&ldquo;We celebrated our anniversary here — the food and setting were both absolutely breathtaking.&rdquo;</p>
+        <p class="heading" style="font-weight:700;margin:0;">Bojan M.</p>
+        <p class="muted" style="font-size:0.85rem;margin:0;">Returning Guest</p>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+  <section class="section" id="contact">
+  <div class="container center" style="max-width:32rem;">
+    <h2 class="heading text-h2">Ready to get started?</h2>
+    <p class="muted text-lede">BilaZora would love to hear from you.</p>
+
+    <form id="contact-form" class="stack" style="gap:0.85rem;text-align:left;">
+      <input class="form-input" type="text" name="name" placeholder="Your name" required />
+      <input class="form-input" type="email" name="email" placeholder="Your email" required />
+      <textarea class="form-input" name="message" rows="4" placeholder="How can we help?" required></textarea>
+      <button type="submit" id="contact-submit" class="btn">Book Your Evening</button>
+      <p id="contact-success" style="display:none;color:var(--accent);font-weight:600;margin:0;">Thanks — we'll be in touch soon.</p>
+      <p id="contact-error" style="display:none;color:#e5484d;font-weight:600;margin:0;">Something went wrong — please try again.</p>
+    </form>
+  </div>
+</section>
+
+<script>
+(function () {
+  var form = document.getElementById('contact-form');
+  var submitBtn = document.getElementById('contact-submit');
+  var success = document.getElementById('contact-success');
+  var error = document.getElementById('contact-error');
+  if (!form) return;
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    success.style.display = 'none';
+    error.style.display = 'none';
+    submitBtn.disabled = true;
+    var original = submitBtn.textContent;
+    submitBtn.textContent = 'Sending...';
+    var data = Object.fromEntries(new FormData(form).entries());
+    fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    })
+      .then(function (res) { return res.ok ? res.json() : Promise.reject(); })
+      .then(function () {
+        success.style.display = 'block';
+        form.reset();
+      })
+      .catch(function () {
+        error.style.display = 'block';
+      })
+      .finally(function () {
+        submitBtn.disabled = false;
+        submitBtn.textContent = original;
+      });
+  });
+})();
+</script>
+
+  <footer style="border-top:1px solid var(--border);padding:2.5rem 0;">
+  <div class="container flex-between" style="flex-wrap:wrap;gap:1rem;">
+    <p class="heading" style="font-weight:700;margin:0;">BilaZora</p>
+    <div class="stack" style="flex-direction:row;gap:1.5rem;">
+      <a href="#" class="muted" style="text-decoration:none;font-size:0.9rem;">Menu</a><a href="#" class="muted" style="text-decoration:none;font-size:0.9rem;">Make a Reservation</a>
+    </div>
+    <p class="muted" style="font-size:0.85rem;margin:0;">&copy; <span id="footer-year"></span> BilaZora. All rights reserved.</p>
+  </div>
+</footer>
+<script>document.getElementById('footer-year').textContent = new Date().getFullYear();</script>
+
+</body>
+</html>
