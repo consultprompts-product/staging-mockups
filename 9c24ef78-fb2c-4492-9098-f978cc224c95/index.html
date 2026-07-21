@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior:smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bilazora — Refined Dining in Sveti Nikole</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #1a1f12;
+      --surface: #232b18;
+      --border: #3a4a28;
+      --heading: #d4af6a;
+      --body: #a8b89a;
+      --accent: #c9a84c;
+      --secondary: #6b7c3f;
+    }
+    body { background-color: #1a1f12; color: #a8b89a; font-family: 'Jost', sans-serif; }
+    h1,h2,h3,h4,h5 { font-family: 'Cormorant Garamond', serif; color: #d4af6a; }
+    .nav-link {
+      position: relative;
+      color: #a8b89a;
+      transition: color 0.3s;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: #c9a84c;
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover { color: #d4af6a; }
+    .nav-link:hover::after { width: 100%; }
+    .btn-primary {
+      background: linear-gradient(135deg, #c9a84c 0%, #d4af6a 60%, #a8893a 100%);
+      color: #1a1f12;
+      font-family: 'Jost', sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      padding: 0.85rem 2.4rem;
+      border: none;
+      border-radius: 0;
+      cursor: pointer;
+      transition: opacity 0.3s, transform 0.2s, box-shadow 0.3s;
+      box-shadow: 0 4px 24px rgba(201,168,76,0.25);
+    }
+    .btn-primary:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 32px rgba(201,168,76,0.4);
+    }
+    .btn-outline {
+      background: transparent;
+      color: #d4af6a;
+      font-family: 'Jost', sans-serif;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      padding: 0.8rem 2.2rem;
+      border: 1px solid #c9a84c;
+      border-radius: 0;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+    }
+    .btn-outline:hover {
+      background: #c9a84c;
+      color: #1a1f12;
+      box-shadow: 0 4px 20px rgba(201,168,76,0.3);
+    }
+    .card {
+      background: #232b18;
+      border: 1px solid #3a4a28;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.35), 0 1px 0 rgba(201,168,76,0.06) inset;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 56px rgba(0,0,0,0.45), 0 0 0 1px rgba(201,168,76,0.12);
+    }
+    .divider {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #c9a84c, transparent);
+      margin: 0 auto;
+    }
+    .gold-dot { color: #c9a84c; }
+    .hero-glow {
+      background: radial-gradient(ellipse 80% 60% at 50% 60%, rgba(201,168,76,0.08) 0%, transparent 70%);
+    }
+    .section-label {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: #6b7c3f;
+      font-weight: 500;
+    }
+    .testimonial-card {
+      background: #232b18;
+      border: 1px solid #3a4a28;
+      border-top: 2px solid #c9a84c;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .testimonial-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 56px rgba(0,0,0,0.4);
+    }
+    .menu-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+    .input-field {
+      background: #1a1f12;
+      border: 1px solid #3a4a28;
+      color: #a8b89a;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.9rem;
+      padding: 0.9rem 1.1rem;
+      width: 100%;
+      outline: none;
+      border-radius: 0;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .input-field::placeholder { color: #4a5a3a; }
+    .input-field:focus {
+      border-color: #c9a84c;
+      box-shadow: 0 0 0 2px rgba(201,168,76,0.1);
+    }
+    .stars { color: #c9a84c; font-size: 1.1rem; letter-spacing: 0.05em; }
+    .hours-row { border-bottom: 1px solid #2d3820; }
+    .hours-row:last-child { border-bottom: none; }
+    .nav-scrolled {
+      background: rgba(26,31,18,0.97) !important;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.4) !important;
+    }
+    .hero-overlay {
+      background: linear-gradient(180deg, rgba(26,31,18,0.62) 0%, rgba(26,31,18,0.82) 60%, #1a1f12 100%);
+    }
+    .feature-icon {
+      width: 52px;
+      height: 52px;
+      border: 1px solid #3a4a28;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      background: rgba(201,168,76,0.06);
+    }
+    .cta-glow {
+      background: linear-gradient(135deg, #1e2614 0%, #232b18 50%, #1a2010 100%);
+      box-shadow: inset 0 0 120px rgba(201,168,76,0.06);
+    }
+  </style>
+</head>
+<body class="antialiased">
+
+<!-- ======================== NAVIGATION ======================== -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" style="background: rgba(26,31,18,0.0); backdrop-filter: blur(12px);">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="flex items-center justify-between h-20">
+      <!-- Logo -->
+      <a href="#hero" class="flex items-center gap-3 group">
+        <div style="width:36px;height:36px;border:1px solid #c9a84c;display:flex;align-items:center;justify-content:center;">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M9 1 L17 9 L9 17 L1 9 Z" stroke="#c9a84c" stroke-width="1" fill="none"/>
+            <circle cx="9" cy="9" r="2.5" fill="#c9a84c" opacity="0.7"/>
+          </svg>
+        </div>
+        <span style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;color:#d4af6a;letter-spacing:0.06em;line-height:1;">Bilazora</span>
+      </a>
+
+      <!-- Desktop nav -->
+      <div class="hidden md:flex items-center gap-10">
+        <a href="#menu" class="nav-link text-sm tracking-widest uppercase font-medium">Our Menu</a>
+        <a href="#reservations" class="nav-link text-sm tracking-widest uppercase font-medium">Reservations</a>
+        <a href="#contact" class="btn-primary" style="padding:0.65rem 1.6rem;">Book a Table</a>
+      </div>
+
+      <!-- Mobile hamburger -->
+      <button id="mobile-menu-btn" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Menu">
+        <span class="block w-6 h-px bg-[#d4af6a] transition-all duration-300" id="line1"></span>
+        <span class="block w-6 h-px bg-[#d4af6a] transition-all duration-300" id="line2"></span>
+        <span class="block w-4 h-px bg-[#d4af6a] transition-all duration-300" id="line3"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="md:hidden hidden" style="background:#1a1f12;border-top:1px solid #3a4a28;">
+    <div class="px-6 py-6 flex flex-col gap-6">
+      <a href="#menu" class="nav-link text-sm tracking-widest uppercase font-medium" onclick="closeMobileMenu()">Our Menu</a>
+      <a href="#reservations" class="nav-link text-sm tracking-widest uppercase font-medium" onclick="closeMobileMenu()">Reservations</a>
+      <a href="#contact" class="btn-primary text-center" onclick="closeMobileMenu()">Book a Table</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ======================== HERO ======================== -->
+<section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+  <!-- Background image simulation with gradient layers -->
+  <div class="absolute inset-0" style="background: linear-gradient(135deg, #0d1209 0%, #1a1f12 40%, #1e2814 70%, #141a0d 100%);"></div>
+
+  <!-- Subtle texture overlay -->
+  <div class="absolute inset-0 opacity-20" style="background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1800&q=80&auto=format&fit=crop'); background-size: cover; background-position: center;"></div>
+  <div class="hero-overlay absolute inset-0"></div>
+
+  <!-- Accent glow -->
+  <div class="hero-glow absolute inset-0"></div>
+
+  <!-- Floating accent lines -->
+  <div class="absolute left-12 top-1/2 transform -translate-y-1/2 hidden lg:block opacity-20">
+    <div style="width:1px;height:120px;background:linear-gradient(180deg,transparent,#c9a84c,transparent);"></div>
+  </div>
+  <div class="absolute right-12 top-1/2 transform -translate-y-1/2 hidden lg:block opacity-20">
+    <div style="width:1px;height:120px;background:linear-gradient(180deg,transparent,#c9a84c,transparent);"></div>
+  </div>
+
+  <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+    <p class="section-label mb-6">Sveti Nikole · North Macedonia</p>
+
+    <div class="divider mb-8"></div>
+
+    <h1 style="font-size:clamp(2.8rem,7vw,5.5rem);font-weight:700;line-height:1.1;letter-spacing:0.01em;color:#d4af6a;text-shadow:0 4px 40px rgba(201,168,76,0.2);" class="mb-6 italic">
+      Refined Dining at the<br/>Heart of Sveti Nikole
+    </h1>
+
+    <div class="divider mb-8"></div>
+
+    <p style="font-size:clamp(1rem,2vw,1.25rem);color:#a8b89a;max-width:560px;margin:0 auto 2.5rem;line-height:1.75;font-weight:300;">
+      Experience culinary artistry in an atmosphere designed for those who appreciate the finest things.
+    </p>
+
+    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+      <a href="#reservations">
+        <button class="btn-primary">Reserve Your Table</button>
+      </a>
+      <a href="#menu">
+        <button class="btn-outline">Explore Our Menu</button>
+      </a>
+    </div>
+
+    <!-- Hours badge -->
+    <div class="mt-14 inline-flex items-center gap-3 px-5 py-3" style="border:1px solid #3a4a28;background:rgba(35,43,24,0.7);backdrop-filter:blur(8px);">
+      <div style="width:7px;height:7px;background:#6b7c3f;border-radius:50%;box-shadow:0 0 8px rgba(107,124,63,0.8);"></div>
+      <span style="font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;color:#a8b89a;font-weight:400;">Open Today &nbsp;·&nbsp; 9:00 – 23:30</span>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
+    <span style="font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:#6b7c3f;">Scroll</span>
+    <div style="width:1px;height:40px;background:linear-gradient(180deg,#c9a84c,transparent);"></div>
+  </div>
+</section>
+
+<!-- ======================== FEATURES / EXPERIENCE ======================== -->
+<section class="py-28 px-6 max-w-7xl mx-auto">
+  <div class="text-center mb-16">
+    <p class="section-label mb-4">The Bilazora Experience</p>
+    <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:600;letter-spacing:0.02em;" class="mb-4">Where Every Detail Matters</h2>
+    <div class="divider"></div>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+    <!-- Feature 1 -->
+    <div class="card p-8">
+      <div class="feature-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.5">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+          <path d="M8 12l3 3 5-5"/>
+        </svg>
+      </div>
+      <h3 style="font-size:1.4rem;font-weight:600;margin-bottom:0.75rem;">Culinary Excellence</h3>
+      <p style="color:#a8b89a;line-height:1.75;font-size:0.92rem;">Our chefs craft each dish with seasonal ingredients and time-honoured techniques, balancing tradition with modern artistry.</p>
+    </div>
+
+    <!-- Feature 2 -->
+    <div class="card p-8">
+      <div class="feature-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.5">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+      </div>
+      <h3 style="font-size:1.4rem;font-weight:600;margin-bottom:0.75rem;">Refined Atmosphere</h3>
+      <p style="color:#a8b89a;line-height:1.75;font-size:0.92rem;">Step into an elegantly appointed space — warm olive tones, candlelit tables, and an ambiance that invites lingering conversation.</p>
+    </div>
+
+    <!-- Feature 3 -->
+    <div class="card p-8">
+      <div class="feature-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.5">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+      </div>
+      <h3 style="font-size:1.4rem;font-weight:600;margin-bottom:0.75rem;">Warm Hospitality</h3>
+      <p style="color:#a8b89a;line-height:1.75;font-size:0.92rem;">Our staff treats every guest as a valued acquaintance — attentive without intrusion, gracious in every interaction.</p>
+    </div>
+
+    <!-- Feature 4 -->
+    <div class="card p-8">
+      <div class="feature-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.5">
+          <circle cx="12" cy="12" r="10"/>
+          <polyline points="12 6 12 12 16 14"/>
+        </svg>
+      </div>
+      <h3 style="font-size:1.4rem;font-weight:600;margin-bottom:0.75rem;">Flexible Hours</h3>
+      <p style="color:#a8b89a;line-height:1.75;font-size:0.92rem;">Open Sunday through Thursday until 23:30, and until 01:00 on Fridays and Saturdays — designed for those who dine on their own schedule.</p>
+    </div>
+
+    <!-- Feature 5 -->
+    <div class="card p-8">
+      <div class="feature-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.5">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+          <circle cx="12" cy="10" r="3"/>
+        </svg>
+      </div>
+      <h3 style="font-size:1.4rem;font-weight:600;margin-bottom:0.75rem;">Prime Location</h3>
+      <p style="color:#a8b89a;line-height:1.75;font-size:0.92rem;">Situated on Marshal Tito Boulevard — the most prominent address in Sveti Nikole — easily accessible and unmistakably central.</p>
+    </div>
+
+    <!-- Feature 6 -->
+    <div class="card p-8">
+      <div class="feature-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.5">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+      </div>
+      <h3 style="font-size:1.4rem;font-weight:600;margin-bottom:0.75rem;">Private Events</h3>
+      <p style="color:#a8b89a;line-height:1.75;font-size:0.92rem;">Host your celebration, business dinner, or intimate gathering in our dedicated private space, tailored to your vision.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ======================== MENU ======================== -->
+<section id="menu" class="py-24 px-6" style="background:#232b18;border-top:1px solid #3a4a28;border-bottom:1px solid #3a4a28;">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16">
+      <p class="section-label mb-4">Curated Selections</p>
+      <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:600;" class="mb-4 italic">Our Menu</h2>
+      <div class="divider mb-4"></div>
+      <p style="color:#a8b89a;max-width:520px;margin:0 auto;font-size:0.95rem;line-height:1.75;">Thoughtfully composed dishes that honour Macedonian heritage while embracing refined European sensibility.</p>
+    </div>
+
+    <!-- Menu categories -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      <!-- Menu Card 1 -->
+      <div class="card overflow-hidden">
+        <div class="relative overflow-hidden" style="height:220px;">
+          <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&q=80&auto=format&fit=crop" alt="Starters" class="menu-img object-cover transition-transform duration-700 hover:scale-105" style="width:100%;height:100%;object-fit:cover;display:block;" />
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,31,18,0.85) 100%);"></div>
+          <div style="position:absolute;bottom:1rem;left:1.25rem;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:#d4af6a;font-weight:600;">Starters</span>
+          </div>
+        </div>
+        <div class="p-6">
+          <div class="space-y-4">
+            <div class="flex justify-between items-start border-b border-[#3a4a28] pb-3">
+              <div>
+                <p style="color:#d4af6a;font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;">Mezze Platter</p>
+                <p style="color:#a8b89a;font-size:0.8rem;margin-top:0.2rem;">Seasonal spreads, olives & artisan bread</p>
+              </div>
+              <span style="color:#c9a84c;font-weight:500;font-size:0.9rem;white-space:nowrap;margin-left:1rem;">680 МКД</span>
+            </div>
+            <div class="flex justify-between items-start border-b border-[#3a4a28] pb-3">
+              <div>
+                <p style="color:#d4af6a;font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;">Smoked Trout</p>
+                <p style="color:#a8b89a;font-size:0.8rem;margin-top:0.2rem;">Ohrid lake trout, crème fraîche, capers</p>
+              </div>
+              <span style="color:#c9a84c;font-weight:500;font-size:0.9rem;white-space:nowrap;margin-left:1rem;">820 МКД</span>
+            </div>
+            <div class="flex justify-between items-start">
+              <div>
+                <p style="color:#d4af6a;font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;">Charcuterie Selection</p>
+                <p style="color:#a8b89a;font-size:0.8rem;margin-top:0.2rem;">Cured meats, aged cheeses, honeycomb</p>
+              </div>
+              <span style="color:#c9a84c;font-weight:500;font-size:0.9rem;white-space:nowrap;margin-left:1rem;">950 МКД</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Menu Card 2 -->
+      <div class="card overflow-hidden">
+        <div class="relative overflow-hidden" style="height:220px;">
+          <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80&auto=format&fit=crop" alt="Main Courses" class="menu-img transition-transform duration-700 hover:scale-105" style="width:100%;height:100%;object-fit:cover;display:block;" />
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,31,18,0.85) 100%);"></div>
+          <div style="position:absolute;bottom:1rem;left:1.25rem;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:#d4af6a;font-weight:600;">Main Courses</span>
+          </div>
+        </div>
+        <div class="p-6">
+          <div class="space-y-4">
+            <div class="flex justify-between items-start border-b border-[#3a4a28] pb-3">
+              <div>
+                <p style="color:#d4af6a;font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;">Slow-Braised Lamb</p>
+                <p style="color:#a8b89a;font-size:0.8rem;margin-top:0.2rem;">Rosemary jus, roasted root vegetables</p>
+              </div>
+              <span style="color:#c9a84c;font-weight:500;font-size:0.9rem;white-space:nowrap;margin-left:1rem;">1,450 МКД</span>
+            </div>
+            <div class="flex justify-between items-start border-b border-[#3a4a28] pb-3">
+              <div>
+                <p style="color:#d4af6a;font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;">Grilled Sea Bass</p>
+                <p style="color:#a8b89a;font-size:0.8rem;margin-top:0.2rem;">Lemon butter, fresh herbs, asparagus</p>
+              </div>
+              <span style="color:#c9a84c;font-weight:500;font-size:0.9rem;white-space:nowrap;margin-left:1rem;">1,280 МКД</span>
+            </div>
+            <div class="flex justify-between items-start">
+              <div>
+                <p style="color:#d4af6a;font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;">Veal Medallions</p>
+                <p style="color:#a8b89a;font-size:0.8rem;margin-top:0.2rem;">Truffle cream, wild mushrooms, polenta</p>
+              </div>
+              <span style="color:#c9a84c;font-weight:500;font-size:0.9rem;white-space:nowrap;margin-left:1rem;">1,650 МКД</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Menu Card 3 -->
+      <div class="card overflow-hidden">
+        <div class="relative overflow-hidden" style="height:220px;">
+          <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=600&q=80&auto=format&fit=crop" alt="Desserts" class="menu-img transition-transform duration-700 hover:scale-105" style="width:100%;height:100%;object-fit:cover;display:block;" />
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(26,31,18,0.85) 100%);"></div>
+          <div style="position:absolute;bottom:1rem;left:1.25rem;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:#d4af6a;font-weight:600;">Desserts</span>
+          </div>
+        </div>
+        <div class="p-6">
+          <div class="space-y-4">
+            <div class="flex justify-between items-start border-b border-[#3a4a28] pb-3">
+              <div>
+                <p style="color:#d4af6a;font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;">Baklava Reimagined</p>
+                <p style="color:#a8b89a;font-size:0.8rem;margin-top:0.2rem;">Pistachio, rosewater, 24k gold leaf</p>
+              </div>
+              <span style="color:#c9a84c;font-weight:500;font-size:0.9rem;white-space:nowrap;margin-left:1rem;">480 МКД</span>
+            </div>
+            <div class="flex justify-between items-start border-b border-[#3a4a28] pb-3">
+              <div>
+                <p style="color:#d4af6a;font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;">Dark Chocolate Tart</p>
+                <p style="color:#a8b89a;font-size:0.8rem;margin-top:0.2rem;">Salted caramel, Chantilly cream</p>
+              </div>
+              <span style="color:#c9a84c;font-weight:500;font-size:0.9rem;white-space:nowrap;margin-left:1rem;">420 МКД</span>
+            </div>
+            <div class="flex justify-between items-start">
+              <div>
+                <p style="color:#d4af6a;font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;">Seasonal Crème Brûlée</p>
+                <p style="color:#a8b89a;font-size:0.8rem;margin-top:0.2rem;">Vanilla bean custard, caramelised crust</p>
+              </div>
+              <span style="color:#c9a84c;font-weight:500;font-size:0.9rem;white-space:nowrap;margin-left:1rem;">390 МКД</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="text-center mt-12">
+      <p style="color:#a8b89a;font-size:0.85rem;margin-bottom:1.5rem;">Full menu available in-house and upon request. Menus change seasonally.</p>
+      <a href="#contact"><button class="btn-outline">Request Full Menu</button></a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== TESTIMONIALS ======================== -->
+<section class="py-28 px-6 max-w-7xl mx-auto">
+  <div class="text-center mb-16">
+    <p class="section-label mb-4">Guest Impressions</p>
+    <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:600;" class="mb-4 italic">What Our Guests Say</h2>
+    <div class="divider"></div>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+    <!-- Testimonial 1 -->
+    <div class="testimonial-card p-8">
+      <div class="stars mb-4">★★★★★</div>
+      <blockquote style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;color:#d4af6a;line-height:1.75;margin-bottom:1.5rem;">
+        "Bilazora is unlike anything I've experienced in North Macedonia. The food is extraordinary, the atmosphere impeccably refined. A true gem."
+      </blockquote>
+      <div class="flex items-center gap-3">
+        <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#3a4a28,#6b7c3f);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:#d4af6a;font-weight:700;">A</div>
+        <div>
+          <p style="color:#d4af6a;font-weight:500;font-size:0.9rem;">Aleksandra M.</p>
+          <p style="color:#6b7c3f;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;">Skopje, MK</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Testimonial 2 -->
+    <div class="testimonial-card p-8">
+      <div class="stars mb-4">★★★★★</div>
+      <blockquote style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;color:#d4af6a;line-height:1.75;margin-bottom:1.5rem;">
+        "We celebrated our anniversary here and were treated like royalty. The braised lamb was the finest dish I've had in years. Exceptional."
+      </blockquote>
+      <div class="flex items-center gap-3">
+        <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#3a4a28,#6b7c3f);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:#d4af6a;font-weight:700;">M</div>
+        <div>
+          <p style="color:#d4af6a;font-weight:500;font-size:0.9rem;">Marko & Ivana P.</p>
+          <p style="color:#6b7c3f;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;">Sveti Nikole, MK</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Testimonial 3 -->
+    <div class="testimonial-card p-8">
+      <div class="stars mb-4">★★★★★</div>
+      <blockquote style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;color:#d4af6a;line-height:1.75;margin-bottom:1.5rem;">
+        "The attention to detail from décor to plating is extraordinary. Business dinners here always leave the right impression. Highly recommended."
+      </blockquote>
+      <div class="flex items-center gap-3">
+        <div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#3a4a28,#6b7c3f);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:#d4af6a;font-weight:700;">S</div>
+        <div>
+          <p style="color:#d4af6a;font-weight:500;font-size:0.9rem;">Stefan K.</p>
+          <p style="color:#6b7c3f;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;">Veles, MK</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ======================== RESERVATIONS / CTA ======================== -->
+<section id="reservations" class="py-28 px-6 relative overflow-hidden" style="background:#232b18;border-top:1px solid #3a4a28;">
+  <!-- Glow effect -->
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(201,168,76,0.07) 0%,transparent 70%);pointer-events:none;"></div>
+
+  <div class="max-w-3xl mx-auto text-center relative z-10">
+    <p class="section-label mb-6">Secure Your Seat</p>
+    <h2 style="font-size:clamp(2.2rem,5vw,3.5rem);font-weight:700;line-height:1.15;" class="italic mb-6">Reserve Your Table at Bilazora</h2>
+    <div class="divider mb-8"></div>
+    <p style="color:#a8b89a;font-size:1rem;line-height:1.8;max-width:500px;margin:0 auto 2.5rem;">
+      Whether it's an intimate dinner, a celebratory occasion, or a business gathering — we'll ensure your experience is exceptional. Contact us below or call directly to book.
+    </p>
+
+    <div class="flex flex-col sm:flex-row gap-5 justify-center items-center mb-12">
+      <a href="#contact">
+        <button class="btn-primary" style="padding:1rem 2.8rem;font-size:0.82rem;">Reserve Online</button>
+      </a>
+      <a href="tel:+38932000000">
+        <button class="btn-outline" style="padding:0.95rem 2.4rem;">Call to Reserve</button>
+      </a>
+    </div>
+
+    <!-- Hours table -->
+    <div style="border:1px solid #3a4a28;background:rgba(26,31,18,0.6);backdrop-filter:blur(8px);max-width:440px;margin:0 auto;">
+      <div class="p-5 border-b border-[#3a4a28]">
+        <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:#d4af6a;font-weight:600;letter-spacing:0.05em;">Opening Hours</h4>
+      </div>
+      <div class="hours-row flex justify-between px-6 py-3.5">
+        <span style="color:#a8b89a;font-size:0.88rem;letter-spacing:0.05em;">Sunday – Thursday</span>
+        <span style="color:#d4af6a;font-size:0.88rem;font-weight:500;">09:00 – 23:30</span>
+      </div>
+      <div class="hours-row flex justify-between px-6 py-3.5">
+        <span style="color:#a8b89a;font-size:0.88rem;letter-spacing:0.05em;">Friday – Saturday</span>
+        <span style="color:#d4af6a;font-size:0.88rem;font-weight:500;">09:00 – 01:00</span>
+      </div>
+      <div class="flex justify-between px-6 py-3.5">
+        <span style="color:#6b7c3f;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;">Kitchen closes 30 min prior</span>
+        <div style="width:7px;height:7px;background:#6b7c3f;border-radius:50%;align-self:center;box-shadow:0 0 8px rgba(107,124,63,0.8);"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ======================== CONTACT FORM ======================== -->
+<section id="contact" class="py-28 px-6 max-w-7xl mx-auto">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+
+    <!-- Info column -->
+    <div>
+      <p class="section-label mb-4">Find Us & Reach Out</p>
+      <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:600;" class="italic mb-4">Get in Touch</h2>
+      <div style="width:60px;height:1px;background:linear-gradient(90deg,#c9a84c,transparent);margin-bottom:2rem;"></div>
+      <p style="color:#a8b89a;line-height:1.8;font-size:0.95rem;margin-bottom:2.5rem;">
+        We'd love to hear from you. Whether you're planning a reservation, enquiring about private events, or simply have a question — our team is here to help.
+      </p>
+
+      <!-- Contact details -->
+      <div class="space-y-5">
+        <div class="flex items-start gap-4">
+          <div style="width:40px;height:40px;border:1px solid #3a4a28;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.5">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <div>
+            <p style="color:#d4af6a;font-weight:500;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.25rem;">Address</p>
+            <p style="color:#a8b89a;font-size:0.92rem;line-height:1.6;">ул. Маршал Тито бр.100<br/>Ж 2220 Sveti Nikole<br/>North Macedonia</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4">
+          <div style="width:40px;height:40px;border:1px solid #3a4a28;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.5">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.58 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.77a16 16 0 0 0 6.29 6.29l1.06-1.06a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+          </div>
+          <div>
+            <p style="color:#d4af6a;font-weight:500;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.25rem;">Phone</p>
+            <a href="tel:+38932000000" style="color:#a8b89a;font-size:0.92rem;transition:color 0.3s;" onmouseover="this.style.color='#d4af6a'" onmouseout="this.style.color='#a8b89a'">+389 32 000 000</a>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4">
+          <div style="width:40px;height:40px;border:1px solid #3a4a28;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.5">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </div>
+          <div>
+            <p style="color:#d4af6a;font-weight:500;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.25rem;">Email</p>
+            <a href="mailto:hello@bilazora.mk" style="color:#a8b89a;font-size:0.92rem;transition:color 0.3s;" onmouseover="this.style.color='#d4af6a'" onmouseout="this.style.color='#a8b89a'">hello@bilazora.mk</a>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4">
+          <div style="width:40px;height:40px;border:1px solid #3a4a28;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.5">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <div>
+            <p style="color:#d4af6a;font-weight:500;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.25rem;">Hours</p>
+            <p style="color:#a8b89a;font-size:0.92rem;line-height:1.6;">Sun – Thu: 09:00 – 23:30<br/>Fri – Sat: 09:00 – 01:00</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Map embed -->
+      <div class="mt-10" style="border:1px solid #3a4a28;overflow:hidden;">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2976.0!2d21.9474!3d41.8659!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sSveti+Nikole!5e0!3m2!1sen!2smk!4v1"
+          width="100%"
+          height="220"
+          style="border:0;filter:grayscale(80%) invert(90%) hue-rotate(160deg) brightness(0.6) contrast(1.1);"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Bilazora location map">
+        </iframe>
+      </div>
+    </div>
+
+    <!-- Form column -->
+    <div class="card p-10">
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:#d4af6a;font-weight:600;margin-bottom:0.5rem;">Make a Reservation</h3>
+      <p style="color:#a8b89a;font-size:0.85rem;margin-bottom:2rem;line-height:1.6;">Fill out the form below and our team will confirm your booking within 24 hours.</p>
+
+      <form id="contact-form" class="space-y-5" novalidate>
+
+        <div>
+          <label style="display:block;font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:#6b7c3f;margin-bottom:0.5rem;">Full Name</label>
+          <input type="text" name="name" placeholder="Your full name" class="input-field" required />
+        </div>
+
+        <div>
+          <label style="display:block;font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:#6b7c3f;margin-bottom:0.5rem;">Email Address</label>
+          <input type="email" name="email" placeholder="your@email.com" class="input-field" required />
+        </div>
+
+        <div>
+          <label style="display:block;font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:#6b7c3f;margin-bottom:0.5rem;">Message or Reservation Details</label>
+          <textarea name="message" rows="5" placeholder="e.g. Date, time, number of guests, special requests..." class="input-field" style="resize:vertical;" required></textarea>
+        </div>
+
+        <button type="submit" id="contact-submit" class="btn-primary w-full" style="width:100%;text-align:center;padding:1rem 2rem;">
+          Send Reservation Request
+        </button>
+
+        <p style="font-size:0.75rem;color:#4a5a3a;text-align:center;line-height:1.6;">
+          We'll confirm your booking via email within 24 hours. For immediate assistance, please call us directly.
+        </p>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<!-- ======================== FOOTER ======================== -->
+<footer style="background:#0f1309;border-top:1px solid #2a3518;">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+
+    <!-- Main footer content -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 py-16">
+
+      <!-- Brand -->
+      <div>
+        <div class="flex items-center gap-3 mb-5">
+          <div style="width:32px;height:32px;border:1px solid #c9a84c;display:flex;align-items:center;justify-content:center;">
+            <svg width="15" height="15" viewBox="0 0 18 18" fill="none">
+              <path d="M9 1 L17 9 L9 17 L1 9 Z" stroke="#c9a84c" stroke-width="1" fill="none"/>
+              <circle cx="9" cy="9" r="2.5" fill="#c9a84c" opacity="0.7"/>
+            </svg>
+          </div>
+          <span style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;color:#d4af6a;">Bilazora</span>
+        </div>
+        <p style="color:#a8b89a;font-size:0.88rem;line-height:1.8;max-width:260px;">
+          Refined dining in the heart of Sveti Nikole. Where culinary artistry meets warm Macedonian hospitality.
+        </p>
+        <div class="flex gap-4 mt-6">
+          <a href="#" aria-label="Instagram" style="width:36px;height:36px;border:1px solid #3a4a28;display:flex;align-items:center;justify-content:center;transition:border-color 0.3s,background 0.3s;" onmouseover="this.style.borderColor='#c9a84c';this.style.background='rgba(201,168,76,0.1)'" onmouseout="this.style.borderColor='#3a4a28';this.style.background='transparent'">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#a8b89a" stroke-width="1.5">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <circle cx="12" cy="12" r="4.5"/>
+              <circle cx="17.5" cy="6.5" r="0.5" fill="#a8b89a"/>
+            </svg>
+          </a>
+          <a href="#" aria-label="Facebook" style="width:36px;height:36px;border:1px solid #3a4a28;display:flex;align-items:center;justify-content:center;transition:border-color 0.3s,background 0.3s;" onmouseover="this.style.borderColor='#c9a84c';this.style.background='rgba(201,168,76,0.1)'" onmouseout="this.style.borderColor='#3a4a28';this.style.background='transparent'">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#a8b89a" stroke-width="1.5">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <div>
+        <h5 style="font-family:'Jost',sans-serif;font-size:0.7rem;letter-spacing:0.25em;text-transform:uppercase;color:#6b7c3f;font-weight:500;margin-bottom:1.25rem;">Navigation</h5>
+        <ul class="space-y-3">
+          <li><a href="#hero" style="color:#a8b89a;font-size:0.9rem;transition:color 0.3s;" onmouseover="this.style.color='#d4af6a'" onmouseout="this.style.color='#a8b89a'">Home</a></li>
+          <li><a href="#menu" style="color:#a8b89a;font-size:0.9rem;transition:color 0.3s;" onmouseover="this.style.color='#d4af6a'" onmouseout="this.style.color='#a8b89a'">Our Menu</a></li>
+          <li><a href="#reservations" style="color:#a8b89a;font-size:0.9rem;transition:color 0.3s;" onmouseover="this.style.color='#d4af6a'" onmouseout="this.style.color='#a8b89a'">Reservations</a></li>
+          <li><a href="#contact" style="color:#a8b89a;font-size:0.9rem;transition:color 0.3s;" onmouseover="this.style.color='#d4af6a'" onmouseout="this.style.color='#a8b89a'">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact info -->
+      <div>
+        <h5 style="font-family:'Jost',sans-serif;font-size:0.7rem;letter-spacing:0.25em;text-transform:uppercase;color:#6b7c3f;font-weight:500;margin-bottom:1.25rem;">Contact</h5>
+        <div class="space-y-3">
+          <p style="color:#a8b89a;font-size:0.88rem;line-height:1.6;">ул. Маршал Тито бр.100<br/>Ж 2220 Sveti Nikole, North Macedonia</p>
+          <a href="tel:+38932000000" style="display:block;color:#a8b89a;font-size:0.88rem;transition:color 0.3s;" onmouseover="this.style.color='#d4af6a'" onmouseout="this.style.color='#a8b89a'">+389 32 000 000</a>
+          <a href="mailto:hello@bilazora.mk" style="display:block;color:#a8b89a;font-size:0.88rem;transition:color 0.3s;" onmouseover="this.style.color='#d4af6a'" onmouseout="this.style.color='#a8b89a'">hello@bilazora.mk</a>
+          <div class="pt-2">
+            <p style="color:#a8b89a;font-size:0.82rem;">Sun–Thu: 09:00 – 23:30</p>
+            <p style="color:#a8b89a;font-size:0.82rem;">Fri–Sat: 09:00 – 01:00</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer bottom -->
+    <div style="border-top:1px solid #2a3518;padding:1.5rem 0;" class="flex flex-col sm:flex-row justify-between items-center gap-3">
+      <p style="color:#4a5a3a;font-size:0.75rem;letter-spacing:0.05em;">© 2024 Bilazora. All rights reserved.</p>
+      <p style="color:#4a5a3a;font-size:0.75rem;letter-spacing:0.05em;">Sveti Nikole · North Macedonia</p>
+    </div>
+
+  </div>
+</footer>
+
+<!-- ======================== JAVASCRIPT ======================== -->
+<script>
+  // Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) {
+      navbar.style.background = 'rgba(26,31,18,0.97)';
+      navbar.style.backdropFilter = 'blur(16px)';
+      navbar.style.boxShadow = '0 4px 32px rgba(0,0,0,0.4)';
+      navbar.style.borderBottom = '1px solid #3a4a28';
+    } else {
+      navbar.style.background = 'rgba(26,31,18,0.0)';
+      navbar.style.backdropFilter = 'blur(12px)';
+      navbar.style.boxShadow = 'none';
+      navbar.style.borderBottom = 'none';
+    }
+  });
+
+  // Mobile menu toggle
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const line1 = document.getElementById('line1');
+  const line2 = document.getElementById('line2');
+  const line3 = document.getElementById('line3');
+  let menuOpen = false;
+
+  mobileMenuBtn.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    mobileMenu.classList.toggle('hidden', !menuOpen);
+    if (menuOpen) {
+      line1.style.transform = 'translateY(6px) rotate(45deg)';
+      line2.style.opacity = '0';
+      line3.style.transform = 'translateY(-6px) rotate(-45deg)';
+      line3.style.width = '24px';
+    } else {
+      line1.style.transform = '';
+      line2.style.opacity = '';
+      line3.style.transform = '';
+      line3.style.width = '16px';
+    }
+  });
+
+  function closeMobileMenu() {
+    menuOpen = false;
+    mobileMenu.classList.add('hidden');
+    line1.style.transform = '';
+    line2.style.opacity = '';
+    line3.style.transform = '';
+    line3.style.width = '16px';
+  }
+
+  // Intersection observer for subtle fade-in animations
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -40px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  // Apply animation to cards
+  document.querySelectorAll('.card, .testimonial-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
